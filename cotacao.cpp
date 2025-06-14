@@ -1,24 +1,16 @@
-#include "Carteira.hpp"
+#include "Cotacao.hpp"
 
-Carteira::Carteira(int id, const std::string& nomeTitular, const std::string& corretora)
-    : id(id), nomeTitular(nomeTitular), corretora(corretora) {}
+Cotacao::Cotacao(const std::string& data, double valor)
+    : data(data), valor(valor) {
 
-int Carteira::getId() const {
-    return id;
+    }
+
+std::string Cotacao::getData() const { 
+    return data; 
 }
-
-std::string Carteira::getNomeTitular() const {
-    return nomeTitular;
+double Cotacao::getValor() const { 
+    return valor; 
 }
-
-std::string Carteira::getCorretora() const {
-    return corretora;
-}
-
-void Carteira::setNomeTitular(const std::string& nome) {
-    nomeTitular = nome;
-}
-
-void Carteira::setCorretora(const std::string& cor) {
-    corretora = cor;
+void Cotacao::setValor(double val) { 
+    valor = val; 
 }
