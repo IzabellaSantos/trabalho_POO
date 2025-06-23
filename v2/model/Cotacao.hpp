@@ -10,6 +10,7 @@ private:
   double valor;
 
 public:
+  Cotacao() = default;
   Cotacao(std::string moeda, double valor);
   std::string getMoeda() const;
   double getValor() const;

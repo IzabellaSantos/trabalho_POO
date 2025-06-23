@@ -15,6 +15,7 @@ private:
   double valorUnitario; // ✅ necessário para RelatorioController
 
 public:
+  Movimentacao() = default;
   Movimentacao(int idMovimento, int idCarteira, const std::string &dataOperacao, char tipoOperacao, double quantidade, double valorUnitario);
 
   int getIdMovimento() const;

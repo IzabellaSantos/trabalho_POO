@@ -13,7 +13,7 @@ double OraculoInMemoryDAO::consultarCotacao(const std::string &moeda) const
   {
     return it->second.getValor();
   }
-  throw std::runtime_error("Moeda não encontrada no oráculo.");
+  throw std::runtime_error("Moeda nao encontrada no oraculo.");
 }
 
 void OraculoInMemoryDAO::atualizarCotacao(const std::string &moeda, double novoValor)
@@ -25,6 +25,6 @@ void OraculoInMemoryDAO::atualizarCotacao(const std::string &moeda, double novoV
   }
   else
   {
-    throw std::runtime_error("Moeda não encontrada para atualização.");
+    throw std::runtime_error("Moeda nao encontrada para atualizacao.");
   }
 }

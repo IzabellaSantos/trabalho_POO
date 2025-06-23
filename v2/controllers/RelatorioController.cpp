@@ -11,7 +11,7 @@ double RelatorioController::calcularSaldo(int idCarteira) const
 
   for (const auto &mov : movimentacoes)
   {
-    saldo += mov.getQuantidade() * mov.getValorUnitario();
+    saldo += mov.getQuantidade() * mov.getValorUnitario(); // TODO -  diferenca de compra ou venda
   }
 
   return saldo;

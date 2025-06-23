@@ -8,14 +8,14 @@ int MovimentacaoInMemoryDAO::incluir(int idCarteira, const std::string &dataOper
 {
   if (tipoOperacao != 'C' && tipoOperacao != 'V')
   {
-    throw std::invalid_argument("Tipo de operação inválido. Use 'C' para compra ou 'V' para venda.");
+    throw std::invalid_argument("Tipo de operacao invalido. Use 'C' para compra ou 'V' para venda.");
   }
   if (quantidade < 0)
   {
-    throw std::invalid_argument("Quantidade não pode ser negativa.");
+    throw std::invalid_argument("Quantidade nao pode ser negativa.");
   }
 
-  Movimentacao novaMov(nextIdMovimento, idCarteira, dataOperacao, tipoOperacao, quantidade);
+  Movimentacao novaMov(nextIdMovimento, idCarteira, dataOperacao, tipoOperacao, quantidade, 0.0);
   movimentacoes.push_back(novaMov);
   return nextIdMovimento++;
 }

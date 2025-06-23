@@ -12,6 +12,7 @@ private:
   std::string corretora;
 
 public:
+  Carteira() = default;  // construtor padrão
   Carteira(int id, const std::string &nomeTitular, const std::string &corretora);
 
   int getId() const;

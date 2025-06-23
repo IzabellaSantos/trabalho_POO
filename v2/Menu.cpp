@@ -52,7 +52,7 @@ void Menu::exibirMenuCarteira()
         std::cout << "3 - Editar carteira existente\n";
         std::cout << "4 - Excluir carteira\n";
         std::cout << "0 - Voltar\n";
-        std::cout << "Escolha uma opção: ";
+        std::cout << "Escolha uma opcao: ";
 
         int opcao;
         std::cin >> opcao;
@@ -75,7 +75,7 @@ void Menu::exibirMenuCarteira()
         case 0:
             return;
         default:
-            printErro("Opção inválida. Tente novamente.");
+            printErro("Opcao invalida. Tente novamente.");
             break;
         }
     }
@@ -110,7 +110,7 @@ void Menu::opcaoRecuperarCarteira()
     }
     else
     {
-        printErro("Carteira não encontrada.");
+        printErro("Carteira no encontrada.");
     }
     aguardarVoltar();
 }
@@ -125,20 +125,20 @@ void Menu::opcaoEditarCarteira()
     auto carteira = carteiraController->obterCarteira(id);
     if (!carteira)
     {
-        printErro("Carteira não encontrada.");
+        printErro("Carteira nao encontrada.");
         aguardarVoltar();
         return;
     }
 
     std::string novoNome, novaCorretora;
     std::cout << "Nome atual: " << carteira->getNomeTitular() << "\n";
-    std::cout << "Informe o novo nome do titular (ou deixe em branco para não alterar): ";
+    std::cout << "Informe o novo nome do titular (ou deixe em branco para nao alterar): ";
     std::getline(std::cin, novoNome);
     if (!novoNome.empty())
         carteira->setNomeTitular(novoNome);
 
     std::cout << "Corretora atual: " << carteira->getCorretora() << "\n";
-    std::cout << "Informe a nova corretora (ou deixe em branco para não alterar): ";
+    std::cout << "Informe a nova corretora (ou deixe em branco para nao alterar): ";
     std::getline(std::cin, novaCorretora);
     if (!novaCorretora.empty())
         carteira->setCorretora(novaCorretora);
@@ -156,18 +156,18 @@ void Menu::opcaoEditarCarteira()
 
 void Menu::opcaoExcluirCarteira()
 {
-    std::cout << "Informe o ID da carteira a ser excluída: ";
+    std::cout << "Informe o ID da carteira a ser excluida: ";
     int id;
     std::cin >> id;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     if (carteiraController->removerCarteira(id))
     {
-        printOpcao("Carteira excluída com sucesso.");
+        printOpcao("Carteira excluida com sucesso.");
     }
     else
     {
-        printErro("Carteira não encontrada.");
+        printErro("Carteira nao encontrada.");
     }
     aguardarVoltar();
 }
@@ -176,12 +176,12 @@ void Menu::exibirMenuMovimentacao()
 {
     while (true)
     {
-        printTitulo("Menu Movimentação");
+        printTitulo("Menu Movimentacao");
         std::cout << "1 - Registrar compra\n";
         std::cout << "2 - Registrar venda\n";
-        std::cout << "3 - Listar movimentações por carteira\n";
+        std::cout << "3 - Listar movimentacoes por carteira\n";
         std::cout << "0 - Voltar\n";
-        std::cout << "Escolha uma opção: ";
+        std::cout << "Escolha uma opcao: ";
 
         int opcao;
         std::cin >> opcao;
@@ -201,7 +201,7 @@ void Menu::exibirMenuMovimentacao()
         case 0:
             return;
         default:
-            printErro("Opção inválida.");
+            printErro("Opcao invalida.");
             break;
         }
     }
@@ -217,20 +217,20 @@ void Menu::opcaoRegistrarMovimentacao(char tipo)
     std::cin >> idCarteira;
     std::cin.ignore();
 
-    std::cout << "Data da operação (YYYY-MM-DD): ";
+    std::cout << "Data da operacao (YYYY-MM-DD): ";
     std::getline(std::cin, data);
 
     std::cout << "Quantidade: ";
     std::cin >> quantidade;
 
-    std::cout << "Valor unitário: ";
+    std::cout << "Valor unitario: ";
     std::cin >> valorUnitario;
     std::cin.ignore();
 
-    Movimentacao mov(-1, idCarteira, data, tipo, quantidade, valorUnitario);
+    Movimentacao mov(0, idCarteira, data, tipo, quantidade, valorUnitario); //TODO - ID tem que ser dinamico
     movimentacaoController->adicionarMovimentacao(idCarteira, mov);
 
-    printOpcao("Movimentação registrada com sucesso.");
+    printOpcao("Movimentacao registrada com sucesso.");
     aguardarVoltar();
 }
 
@@ -244,7 +244,7 @@ void Menu::opcaoListarMovimentacoes()
     auto movs = movimentacaoController->obterMovimentacoes(idCarteira);
     if (movs.empty())
     {
-        printErro("Nenhuma movimentação encontrada.");
+        printErro("Nenhuma movimentacao encontrada.");
     }
     else
     {
@@ -254,7 +254,7 @@ void Menu::opcaoListarMovimentacoes()
                 << " | Data: " << m.getDataOperacao()
                 << " | Tipo: " << m.getTipoOperacao()
                 << " | Quantidade: " << m.getQuantidade()
-                << " | Valor unitário: " << m.getValorUnitario() << "\n";
+                << " | Valor unitario: " << m.getValorUnitario() << "\n";
         }
     }
     aguardarVoltar();
@@ -264,12 +264,12 @@ void Menu::exibirMenuRelatorios()
 {
     while (true)
     {
-        printTitulo("Menu Relatórios");
+        printTitulo("Menu Relatorios");
         std::cout << "1 - Exibir saldo atual da carteira\n";
-        std::cout << "2 - Exibir histórico de movimentações\n";
+        std::cout << "2 - Exibir histórico de movimentacoes\n";
         std::cout << "3 - Exibir ganho ou perda atual\n";
         std::cout << "0 - Voltar\n";
-        std::cout << "Escolha uma opção: ";
+        std::cout << "Escolha uma opcao: ";
 
         int opcao;
         std::cin >> opcao;
@@ -289,7 +289,7 @@ void Menu::exibirMenuRelatorios()
         case 0:
             return;
         default:
-            printErro("Opção inválida.");
+            printErro("Opcao invalida.");
             break;
         }
     }
@@ -317,7 +317,7 @@ void Menu::opcaoExibirHistorico()
     auto historico = relatorioController->obterHistoricoMovimentacao(id);
     if (historico.empty())
     {
-        printErro("Sem movimentações.");
+        printErro("Sem movimentacoes.");
     }
     else
     {
@@ -350,9 +350,9 @@ void Menu::exibirMenuAjuda()
     {
         printTitulo("Menu Ajuda");
         std::cout << "1 - Sobre o sistema\n";
-        std::cout << "2 - Créditos\n";
+        std::cout << "2 - Creditos\n";
         std::cout << "0 - Voltar\n";
-        std::cout << "Escolha uma opção: ";
+        std::cout << "Escolha uma opcao: ";
 
         int opcao;
         std::cin >> opcao;
@@ -362,18 +362,18 @@ void Menu::exibirMenuAjuda()
         {
         case 1:
             std::cout << "\nEste sistema permite gerenciar carteiras de moedas virtuais, "
-                "registrar movimentações de compra e venda, e gerar relatórios financeiros "
-                "com base em cotações simuladas por um oráculo local.\n";
+                "registrar movimentacoes de compra e venda, e gerar relatorios financeiros "
+                "com base em cotacoes simuladas por um oraculo local.\n";
             break;
         case 2:
-            std::cout << "\nFT Coin - Sistema de Apuração de Ganhos e Perdas\n"
-                "Versão: 1.0\n"
+            std::cout << "\nFT Coin - Sistema de Apuracao de Ganhos e Perdas\n"
+                "Versao: 1.0\n"
                 "Ano: 2025\n";
             break;
         case 0:
             return;
         default:
-            printErro("Opção inválida.");
+            printErro("Opcao invalida.");
             break;
         }
 
@@ -387,11 +387,11 @@ void Menu::exibirMenuPrincipalLoop()
     {
         printTitulo("Menu Principal");
         std::cout << "1 - Carteira\n";
-        std::cout << "2 - Movimentação\n";
-        std::cout << "3 - Relatórios\n";
+        std::cout << "2 - Movimentacao\n";
+        std::cout << "3 - Relatorios\n";
         std::cout << "4 - Ajuda\n";
         std::cout << "0 - Sair\n";
-        std::cout << "Escolha uma opção: ";
+        std::cout << "Escolha uma opcao: ";
 
         int opcao;
         std::cin >> opcao;
@@ -415,7 +415,7 @@ void Menu::exibirMenuPrincipalLoop()
             std::cout << "Saindo...\n";
             return;
         default:
-            printErro("Opção inválida.");
+            printErro("Opcao invalida.");
             break;
         }
     }
