@@ -8,7 +8,7 @@ Main.cpp Menu.cpp
 model\Carteira.cpp model\Movimentacao.cpp model\Cotacao.cpp 
 controllers\CarteiraController.cpp controllers\MovimentacaoController.cpp controllers\OraculoController.cpp controllers\RelatorioController.cpp 
 dao\CarteiraInMemoryDAO.cpp dao\MovimentacaoInMemoryDAO.cpp dao\OraculoInMemoryDAO.cpp 
-simular_cotacoes.cpp 
+model/simular_cotacoes.cpp 
 -o ftcoin.exe -std=c++11
 
 if %errorlevel% neq 0 (
