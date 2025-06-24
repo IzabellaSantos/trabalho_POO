@@ -1,7 +1,7 @@
 #ifndef ORACULO_IN_MEMORY_DAO_HPP
 #define ORACULO_IN_MEMORY_DAO_HPP
 
-#include "../model/Cotacao.hpp"
+#include "../Model/Cotacao.hpp"
 #include <map>
 #include <string>
 

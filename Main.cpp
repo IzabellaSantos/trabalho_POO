@@ -1,9 +1,9 @@
 #include <iostream>
-#include "controllers/CarteiraController.hpp"
-#include "controllers/MovimentacaoController.hpp"
-#include "controllers/RelatorioController.hpp"
-#include "controllers/OraculoController.hpp"
-#include "Menu.hpp"
+#include "Local/CarteiraController.hpp"
+#include "Local/MovimentacaoController.hpp"
+#include "Local/RelatorioController.hpp"
+#include "Local/OraculoController.hpp"
+#include "Menu/Menu.hpp"
 
 int main()
 {

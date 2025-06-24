@@ -2,9 +2,17 @@
 #ifndef MENU_HPP
 #define MENU_HPP
 
-#include "controllers/CarteiraController.hpp"
-#include "controllers/MovimentacaoController.hpp"
-#include "controllers/RelatorioController.hpp"
+#include "../Local/CarteiraController.hpp"
+#include "../Local/MovimentacaoController.hpp"
+#include "../Local/RelatorioController.hpp"
+#include <iostream>
+#include <limits>
+
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
 
 class Menu
 {
@@ -31,7 +39,6 @@ private:
 	void opcaoExibirGanhoPerda();
 
 	void exibirMenuAjuda();
-
 
 	void printTitulo(const std::string& titulo);
 	void printOpcao(const std::string& texto);

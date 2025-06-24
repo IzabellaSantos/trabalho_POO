@@ -1,0 +1,5 @@
+# Ignorar pasta de backup do VSCode
+.vscode/
+
+# Ignorar arquivos de build
+*.exe
