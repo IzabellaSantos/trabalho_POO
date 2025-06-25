@@ -6,12 +6,11 @@ void Menu::exibirMenuMovimentacao() {
     while (true) {
         system("cls");
 
-        printInfo("MOVIMENTACOES");
+        printInfo("\n=== GERENCIAMENTO DE MOVIMENTACOES ===");
         std::cout << "1 - Registrar compra\n"
                   << "2 - Registrar venda\n"
                   << "3 - Listar movimentacoes por carteira\n"
-                  << "0 - Voltar\n"
-                  << "Escolha uma opcao: ";
+                  << "0 - Voltar\n";
 
         if (!lerOpcao(opcao)) {
             aguardarVoltar();
@@ -47,6 +46,8 @@ void Menu::opcaoRegistrarMovimentacao(char tipo) {
 
     int idCarteira = lerIdCarteira();
 
+    if (idCarteira == -1) return;
+
     if(!carteiraController->obterCarteira(idCarteira)) {
         printError("Id da carteira nao localizado, tente novamente!");
         return;
@@ -72,6 +73,8 @@ void Menu::opcaoListarMovimentacoes() {
     if (!verificarCarteirasDisponiveis()) return;
 
     int idCarteira = lerIdCarteira();
+
+    if (idCarteira == -1) return;
 
     auto movs = movimentacaoController->obterMovimentacoes(idCarteira);
     if (movs.empty()) {

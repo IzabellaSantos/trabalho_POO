@@ -6,12 +6,11 @@ void Menu::exibirMenuRelatorios() {
     while (true) {
         system("cls");
 
-        printInfo("RELATORIOS");
+        printInfo("\n=== RELATORIOS ===");
         std::cout << "1 - Exibir saldo atual da carteira\n"
                   << "2 - Exibir historico de movimentacoes\n"
                   << "3 - Exibir ganho ou perda atual\n"
-                  << "0 - Voltar\n"
-                  << "Escolha uma opcao: ";
+                  << "0 - Voltar\n";
         
         if (!lerOpcao(opcao)) {
             aguardarVoltar();
@@ -45,6 +44,8 @@ void Menu::opcaoExibirSaldo() {
 
     int idCarteira = lerIdCarteira();
 
+    if (idCarteira == -1) return;
+
     if(!carteiraController->obterCarteira(idCarteira)) {
         printError("Id da carteira nao localizado, tente novamente!");
         return;
@@ -59,6 +60,8 @@ void Menu::opcaoExibirHistorico() {
     if (!verificarCarteirasDisponiveis()) return;
 
     int idCarteira = lerIdCarteira();
+
+    if (idCarteira == -1) return;
 
     if(!carteiraController->obterCarteira(idCarteira)) {
         printError("Id da carteira nao localizado, tente novamente!");
@@ -83,6 +86,8 @@ void Menu::opcaoExibirGanhoPerda() {
     if (!verificarCarteirasDisponiveis()) return;
     
     int idCarteira = lerIdCarteira();
+
+    if (idCarteira == -1) return;
 
     if(!carteiraController->obterCarteira(idCarteira)) {
         printError("Id da carteira nao localizado, tente novamente!");

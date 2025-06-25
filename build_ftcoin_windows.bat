@@ -38,8 +38,10 @@ Local\CarteiraController.cpp Local\MovimentacaoController.cpp Local\OraculoContr
 
 if %errorlevel% neq 0 (
     echo Houve erros na compilacao dos testes!
+    echo.
 ) else (
     echo Testes compilados com sucesso! Executavel: testes.exe
+    echo.
 )
 
 :end

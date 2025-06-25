@@ -6,21 +6,17 @@ void Menu::exibirMenuCarteira() {
     while (true) {
         system("cls");
 
-        printInfo("GERENCIAMENTO DE CARTEIRAS");
+        printInfo("\n=== GERENCIAMENTO DE CARTEIRAS === ");
         std::cout << "1 - Incluir nova carteira\n"
                   << "2 - Recuperar carteira por ID\n"
                   << "3 - Editar carteira existente\n"
                   << "4 - Excluir carteira\n"
-                  << "0 - Voltar\n"
-                  << "Escolha uma opcao: ";
-
+                  << "0 - Voltar\n";
         
         if (!lerOpcao(opcao)) {
             aguardarVoltar();
             continue;
         }
-
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
         switch (opcao) {
             case 1: 
@@ -49,8 +45,9 @@ void Menu::exibirMenuCarteira() {
 void Menu::opcaoIncluirCarteira() {
     std::string nome, corretora;
 
-    std::cout << "\n--- Criar de Nova Carteira ---\n"
-              << "Informe o nome do titular: ";
+    printInfo("\nCriar Carteira");
+            
+    std::cout<< "Informe o nome do titular: ";
     std::getline(std::cin, nome);
 
     std::cout << "Informe a corretora: ";
@@ -64,9 +61,14 @@ void Menu::opcaoRecuperarCarteira() {
 
     if (!verificarCarteirasDisponiveis()) return;
 
-    std::cout << "\n--- Recuperar de Carteira ---\n";
+    printInfo("\nRecuperar de Carteira");
     int idCarteira = lerIdCarteira();
 
+    if (idCarteira == -1) {
+        aguardarVoltar();
+        return;
+    }
+    
     auto carteira = carteiraController->obterCarteira(idCarteira);
 
     if (carteira) {
@@ -80,8 +82,10 @@ void Menu::opcaoEditarCarteira() {
 
     if (!verificarCarteirasDisponiveis()) return;
 
-    std::cout << "\n--- Editar de Carteira ---\n";
+    printInfo("\nEditar Carteira");
     int idCarteira = lerIdCarteira();
+
+    if (idCarteira == -1) return;
 
     auto carteira = carteiraController->obterCarteira(idCarteira);
     
@@ -105,7 +109,7 @@ void Menu::opcaoEditarCarteira() {
         carteira->setCorretora(novaCorretora);
 
     if (carteiraController->atualizarCarteira(*carteira)) {
-        printSucess("Carteira atualizada com sucesso.\n");
+        printSucess("Carteira atualizada com sucesso.");
         exibirCarteira(*carteira);
     } else {
         printError("Falha ao atualizar carteira.");
@@ -116,8 +120,10 @@ void Menu::opcaoExcluirCarteira() {
 
     if (!verificarCarteirasDisponiveis()) return;
 
-    std::cout << "\n--- Excluir Carteira ---\n";
+    printInfo("\nExcluir Carteira");
     int idCarteira = lerIdCarteira();
+
+    if (idCarteira == -1) return;
 
     if (carteiraController->removerCarteira(idCarteira)) {
         printSucess("Carteira excluida com sucesso.");

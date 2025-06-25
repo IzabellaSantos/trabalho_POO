@@ -11,7 +11,7 @@ bool Menu::lerOpcao(int& opcao) {
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return true;
     } else {
-        printError("Entrada inválida, por favor digite apenas números.");
+        printError("\nEntrada invalida, por favor digite apenas numeros.");
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return false;
@@ -29,9 +29,16 @@ bool Menu::verificarCarteirasDisponiveis() {
 int Menu::lerIdCarteira() {
     int id;
     std::cout << "ID da carteira: ";
-    std::cin >> id;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    return id;
+    
+    if (std::cin >> id) {
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return id;
+    } else {
+        printError("\nEntrada invalida, por favor digite apenas numeros.");
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return -1; 
+    }
 }
 
 void Menu::exibirCarteira(const Carteira& carteira) {

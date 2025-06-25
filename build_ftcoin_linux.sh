@@ -39,7 +39,9 @@ Local/CarteiraController.cpp Local/MovimentacaoController.cpp Local/OraculoContr
 
 if [ $? -ne 0 ]; then
     echo "Houve erros na compilação dos testes!"
+    echo
     exit 1
 else
     echo "Testes compilados com sucesso! Executável: ./testes"
+    echo
 fi

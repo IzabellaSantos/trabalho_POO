@@ -8,7 +8,7 @@ const std::string YELLOW = "\033[33m";
 const std::string CYAN = "\033[36m";
 
 void Menu::printInfo(const std::string& texto) {
-    std::cout << CYAN << "\n=== " << texto << " ===" << RESET << std::endl;
+    std::cout << CYAN << texto << RESET << std::endl;
 }
 
 void Menu::printSucess(const std::string& texto) {
