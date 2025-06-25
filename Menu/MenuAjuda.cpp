@@ -7,21 +7,16 @@ void Menu::exibirMenuAjuda() {
 
         system("cls");
 
-        printTitulo("AJUDA AO USUARIO");
+        printInfo("AJUDA AO USUARIO");
         std::cout << "1 - Sobre o sistema\n"
                   << "2 - Creditos\n"
                   << "0 - Voltar\n"
                   << "Escolha uma opcao: ";
         
-        if (!(std::cin >> opcao)) {
-            printErro("Entrada invalida, por favor digite apenas numeros.");
-            std::cin.clear(); // limpa o recebimento de entradas
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //ignora tudo que restou no buffer
+        if (!lerOpcao(opcao)) {
             aguardarVoltar();
             continue;
         }
-
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
         switch (opcao) {
             case 1:
@@ -38,7 +33,7 @@ void Menu::exibirMenuAjuda() {
             case 0:
                 return;
             default:
-                printErro("Opcao invalida, por favor escolha entre 0 e 2."); 
+                printError("Opcao invalida, por favor escolha entre 0 e 2."); 
                 
                 break;
         }

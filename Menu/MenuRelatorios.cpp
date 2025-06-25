@@ -6,22 +6,17 @@ void Menu::exibirMenuRelatorios() {
     while (true) {
         system("cls");
 
-        printTitulo("RELATORIOS");
+        printInfo("RELATORIOS");
         std::cout << "1 - Exibir saldo atual da carteira\n"
                   << "2 - Exibir historico de movimentacoes\n"
                   << "3 - Exibir ganho ou perda atual\n"
                   << "0 - Voltar\n"
                   << "Escolha uma opcao: ";
         
-        if (!(std::cin >> opcao)) {
-            printErro("Entrada invalida, por favor digite apenas numeros.");
-            std::cin.clear(); // limpa o recebimento de entradas
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //ignora tudo que restou no buffer
+        if (!lerOpcao(opcao)) {
             aguardarVoltar();
             continue;
         }
-
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
         switch (opcao) {
             case 1: 
@@ -36,7 +31,7 @@ void Menu::exibirMenuRelatorios() {
             case 0: 
                 return;
             default: 
-                printErro("Opcao invalida, por favor escolha entre 0 e 3."); 
+                printError("Opcao invalida, por favor escolha entre 0 e 3."); 
                 break;
         }
 
@@ -46,18 +41,12 @@ void Menu::exibirMenuRelatorios() {
 
 void Menu::opcaoExibirSaldo() {
 
-    if(carteiraController->verificarExistenciaCarteiras()){
-        printErro("Nao foram encontradas carteiras para gerar o relatorio!");
-        return;
-    }
+    if (!verificarCarteirasDisponiveis()) return;
 
-    int idCarteira;
-    std::cout << "ID da carteira: ";
-    std::cin >> idCarteira;
-    std::cin.ignore();
+    int idCarteira = lerIdCarteira();
 
     if(!carteiraController->obterCarteira(idCarteira)) {
-        printErro("Id da carteira nao localizado, tente novamente!");
+        printError("Id da carteira nao localizado, tente novamente!");
         return;
     }
 
@@ -67,24 +56,18 @@ void Menu::opcaoExibirSaldo() {
 
 void Menu::opcaoExibirHistorico() {
 
-    if(carteiraController->verificarExistenciaCarteiras()){
-        printErro("Nao foram encontradas carteiras para gerar o relatorio!");
-        return;
-    }
+    if (!verificarCarteirasDisponiveis()) return;
 
-    int idCarteira;
-    std::cout << "ID da carteira: ";
-    std::cin >> idCarteira;
-    std::cin.ignore();
+    int idCarteira = lerIdCarteira();
 
     if(!carteiraController->obterCarteira(idCarteira)) {
-        printErro("Id da carteira nao localizado, tente novamente!");
+        printError("Id da carteira nao localizado, tente novamente!");
         return;
     }
 
     auto historico = relatorioController->obterHistoricoMovimentacao(idCarteira);
     if (historico.empty()) {
-        printErro("Sem movimentacoes.");
+        printError("Sem movimentacoes.");
     } else {
         for (const auto& m : historico){
             std::cout << "Data: " << m.getDataOperacao()
@@ -97,18 +80,12 @@ void Menu::opcaoExibirHistorico() {
 
 void Menu::opcaoExibirGanhoPerda() {
 
-    if(carteiraController->verificarExistenciaCarteiras()){
-        printErro("Nao foram encontradas carteiras para gerar o relatorio!");
-        return;
-    }
+    if (!verificarCarteirasDisponiveis()) return;
     
-    int idCarteira;
-    std::cout << "ID da carteira: ";
-    std::cin >> idCarteira;
-    std::cin.ignore();
+    int idCarteira = lerIdCarteira();
 
     if(!carteiraController->obterCarteira(idCarteira)) {
-        printErro("Id da carteira nao localizado, tente novamente!");
+        printError("Id da carteira nao localizado, tente novamente!");
         return;
     }
 

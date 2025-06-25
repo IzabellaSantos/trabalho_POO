@@ -8,7 +8,7 @@ echo ========================================
 
 g++ ^
 Main.cpp ^
-Menu\Menu.cpp Menu\MenuCarteira.cpp Menu\MenuMovimentacao.cpp Menu\MenuRelatorios.cpp Menu\MenuAjuda.cpp Menu\MenuCores.cpp ^
+Menu\Menu.cpp Menu\MenuHelpers.cpp Menu\MenuCarteira.cpp Menu\MenuMovimentacao.cpp Menu\MenuRelatorios.cpp Menu\MenuAjuda.cpp Menu\MenuCores.cpp ^
 Model\Carteira.cpp Model\Movimentacao.cpp Model\Cotacao.cpp ^
 Local\CarteiraController.cpp Local\MovimentacaoController.cpp Local\OraculoController.cpp Local\RelatorioController.cpp ^
 DAO\CarteiraInMemoryDAO.cpp DAO\MovimentacaoInMemoryDAO.cpp DAO\OraculoInMemoryDAO.cpp ^
@@ -28,7 +28,7 @@ echo Compilando os testes com Catch2...
 echo ========================================
 
 g++ -std=c++11 ^
--I"C:\Users\bella\Programming\C\trabalho_POO\v2\Testes" ^
+-I"C:\Users\bella\Programming\C\trabalho_POO\Testes" ^
 Testes\CatchMain.cpp ^
 Testes\LocalTestes\CarteiraControllerTeste.cpp Testes\LocalTestes\MovimentacaoControllerTeste.cpp Testes\LocalTestes\RelatorioControllerTeste.cpp ^
 Testes\Mocks\OraculoControllerMock.cpp ^

@@ -14,8 +14,7 @@
 #include <unistd.h>
 #endif
 
-class Menu
-{
+class Menu {
 private:
 	CarteiraController* carteiraController;
 	MovimentacaoController* movimentacaoController;
@@ -40,9 +39,14 @@ private:
 
 	void exibirMenuAjuda();
 
-	void printTitulo(const std::string& titulo);
-	void printOpcao(const std::string& texto);
-	void printErro(const std::string& texto);
+	void printInfo(const std::string& texto);
+	void printSucess(const std::string& texto);
+	void printError(const std::string& texto);
+
+	bool lerOpcao(int& opcao);
+	bool verificarCarteirasDisponiveis();
+	int lerIdCarteira();
+	void exibirCarteira(const Carteira& carteira);
 
 public:
 	Menu(CarteiraController* carteiraCtrl, MovimentacaoController* movCtrl, RelatorioController* relatorioCtrl);

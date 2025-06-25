@@ -6,22 +6,17 @@ void Menu::exibirMenuMovimentacao() {
     while (true) {
         system("cls");
 
-        printTitulo("MOVIMENTACOES");
+        printInfo("MOVIMENTACOES");
         std::cout << "1 - Registrar compra\n"
                   << "2 - Registrar venda\n"
                   << "3 - Listar movimentacoes por carteira\n"
                   << "0 - Voltar\n"
                   << "Escolha uma opcao: ";
 
-        if (!(std::cin >> opcao)) {
-            printErro("Entrada invalida, por favor digite apenas numeros.");
-            std::cin.clear(); // limpa o recebimento de entradas
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //ignora tudo que restou no buffer
+        if (!lerOpcao(opcao)) {
             aguardarVoltar();
             continue;
         }
-
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
         switch (opcao) { 
             case 1: 
@@ -36,7 +31,7 @@ void Menu::exibirMenuMovimentacao() {
             case 0: 
                 return;
             default: 
-                printErro("Opcao invalida, por favor escolha entre 0 e 3."); 
+                printError("Opcao invalida, por favor escolha entre 0 e 3."); 
                 break;
         }
 
@@ -45,21 +40,15 @@ void Menu::exibirMenuMovimentacao() {
 }
 
 void Menu::opcaoRegistrarMovimentacao(char tipo) {
-    int idCarteira;
     std::string data;
     double quantidade, valorUnitario;
 
-    if(carteiraController->verificarExistenciaCarteiras()){
-        printErro("Nao foram encontradas carteiras para realizar movimentacoes!");
-        return;
-    }
+    if (!verificarCarteirasDisponiveis()) return;
 
-    std::cout << "ID da carteira: ";
-    std::cin >> idCarteira;
-    std::cin.ignore();
+    int idCarteira = lerIdCarteira();
 
     if(!carteiraController->obterCarteira(idCarteira)) {
-        printErro("Id da carteira nao localizado, tente novamente!");
+        printError("Id da carteira nao localizado, tente novamente!");
         return;
     }
 
@@ -75,24 +64,18 @@ void Menu::opcaoRegistrarMovimentacao(char tipo) {
 
     movimentacaoController->adicionarMovimentacao(idCarteira, data, tipo, quantidade, valorUnitario);
 
-    printOpcao("Movimentacao registrada com sucesso.");
+    printSucess("Movimentacao registrada com sucesso.");
 }
 
 void Menu::opcaoListarMovimentacoes() {
 
-    if(carteiraController->verificarExistenciaCarteiras()){
-        printErro("Nao existem carteiras para listar movimentacoes!");
-        return;
-    }
+    if (!verificarCarteirasDisponiveis()) return;
 
-    int idCarteira;
-    std::cout << "Informe o ID da carteira: ";
-    std::cin >> idCarteira;
-    std::cin.ignore();
+    int idCarteira = lerIdCarteira();
 
     auto movs = movimentacaoController->obterMovimentacoes(idCarteira);
     if (movs.empty()) {
-        printErro("Nenhuma movimentacao encontrada.");
+        printError("Nenhuma movimentacao encontrada.");
     } else {
         for (const auto& m : movs) {
             std::cout << "ID: " << m.getIdMovimento()
