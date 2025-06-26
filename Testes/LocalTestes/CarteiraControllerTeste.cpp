@@ -9,7 +9,7 @@ TEST_CASE("Criar carteira", "[CarteiraController]") {
     auto carteira = controller.obterCarteira(id);
 
     REQUIRE(carteira != nullptr);
-    REQUIRE(carteira->getId() == id);
+    REQUIRE(carteira->getCarteiraId() == id);
     REQUIRE(carteira->getNomeTitular() == "Joao Silva");
     REQUIRE(carteira->getCorretora() == "Binance");
 }
@@ -56,7 +56,7 @@ TEST_CASE("Listar todas as carteiras", "[CarteiraController]") {
 
     std::vector<int> ids;
     for (const auto& carteira : lista) {
-        ids.push_back(carteira.getId());
+        ids.push_back(carteira.getCarteiraId());
     }
 
     REQUIRE(std::find(ids.begin(), ids.end(), id1) != ids.end());

@@ -2,7 +2,7 @@
 #include <vector>
 
 void MovimentacaoController::adicionarMovimentacao(int idCarteira, const std::string& data, char tipo, double quantidade, double valorUnitario) {
-  Movimentacao mov(proximoIdMovimentacao++, idCarteira, data, tipo, quantidade, valorUnitario);
+  Movimentacao mov(proximoIdMovimentacao++, data, tipo, quantidade, valorUnitario);
   movimentacoesPorCarteira[idCarteira].push_back(mov);
 }
 

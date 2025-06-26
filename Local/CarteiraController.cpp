@@ -20,7 +20,7 @@ std::unique_ptr<Carteira> CarteiraController::obterCarteira(int id) const {
 }
 
 bool CarteiraController::atualizarCarteira(const Carteira &carteiraAtualizada) {
-  auto it = carteiras.find(carteiraAtualizada.getId());
+  auto it = carteiras.find(carteiraAtualizada.getCarteiraId());
   if (it != carteiras.end()) {
     it->second = carteiraAtualizada;
     return true;

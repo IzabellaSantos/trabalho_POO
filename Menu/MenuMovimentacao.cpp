@@ -59,10 +59,21 @@ void Menu::opcaoRegistrarMovimentacao(char tipo) {
 
     std::cout << "Quantidade: ";
     std::cin >> quantidade;
+    std::cin.ignore();
+
+    if(quantidade < 0) {
+        printError("Quantidade nao pode ser negativa!");
+        return;
+    }
 
     std::cout << "Valor unitario: ";
     std::cin >> valorUnitario;
     std::cin.ignore();
+
+    if(valorUnitario < 0) {
+        printError("Valor Unitario nao pode ser negativo!");
+        return;
+    }
 
     movimentacaoController->adicionarMovimentacao(idCarteira, data, tipo, quantidade, valorUnitario);
 

@@ -42,7 +42,7 @@ int Menu::lerIdCarteira() {
 }
 
 void Menu::exibirCarteira(const Carteira& carteira) {
-    std::cout << "ID: " << carteira.getId() << "\n";
+    std::cout << "ID: " << carteira.getCarteiraId() << "\n";
     std::cout << "Nome do Titular: " << carteira.getNomeTitular() << "\n";
     std::cout << "Corretora: " << carteira.getCorretora() << "\n";
 }
