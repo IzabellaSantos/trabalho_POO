@@ -1,18 +1,21 @@
-#include "Menu.hpp"
+#include "MenuPrincipal.hpp"
 
-Menu::Menu(CarteiraController* carteiraCtrl, 
-           MovimentacaoController* movCtrl, 
-           RelatorioController* relatorioCtrl)
-    : carteiraController(carteiraCtrl), movimentacaoController(movCtrl), relatorioController(relatorioCtrl) {}
+MenuPrincipal::MenuPrincipal(CarteiraController* carteiraCtrl,
+                             MovimentacaoController* movCtrl,
+                             RelatorioController* relatorioCtrl)
+    : menuCarteira(carteiraCtrl),
+      menuMovimentacao(carteiraCtrl, movCtrl),
+      menuRelatorio(carteiraCtrl, relatorioCtrl),
+      menuAjuda() {}
 
 
-void Menu::exibirMenuPrincipalLoop() {
+void MenuPrincipal::exibir() {
     int opcao = -1;
 
     while (true) {
         system("cls");
         
-        printInfo("Menu Principal");
+        printInfo("\n=== MENU PRINCIPAL ===");
         std::cout << "1 - Carteira\n"
                   << "2 - Movimentacao\n"
                   << "3 - Relatorios\n"
@@ -26,16 +29,16 @@ void Menu::exibirMenuPrincipalLoop() {
 
         switch (opcao) {
             case 1: 
-                exibirMenuCarteira(); 
+                menuCarteira.exibir(); 
                 break;
             case 2: 
-                exibirMenuMovimentacao(); 
+                menuMovimentacao.exibir(); 
                 break;
             case 3: 
-                exibirMenuRelatorios(); 
+                menuRelatorio.exibir(); 
                 break;
             case 4: 
-                exibirMenuAjuda(); 
+                menuAjuda.exibir(); 
                 break;
             case 0: 
                 std::cout << "Saindo do Programa...\n"; 

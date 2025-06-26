@@ -1,6 +1,10 @@
-#include "Menu.hpp"
+#include "MenuMovimentacao.hpp"
 
-void Menu::exibirMenuMovimentacao() {
+MenuMovimentacao::MenuMovimentacao(CarteiraController* carteiraCtrl,
+                                   MovimentacaoController* movimentacaoCtrl)
+    : carteiraController(carteiraCtrl), movimentacaoController(movimentacaoCtrl) {}
+
+void MenuMovimentacao::exibir() {
     int opcao = -1;
 
     while (true) {
@@ -38,11 +42,11 @@ void Menu::exibirMenuMovimentacao() {
     }
 }
 
-void Menu::opcaoRegistrarMovimentacao(char tipo) {
+void MenuMovimentacao::opcaoRegistrarMovimentacao(char tipo) {
     std::string data;
     double quantidade, valorUnitario;
 
-    if (!verificarCarteirasDisponiveis()) return;
+    if (!verificarCarteirasDisponiveis(carteiraController)) return;
 
     printInfo("\nRegistrar Movimentacao");
     int idCarteira = lerIdCarteira();
@@ -80,9 +84,9 @@ void Menu::opcaoRegistrarMovimentacao(char tipo) {
     printSucess("Movimentacao registrada com sucesso.");
 }
 
-void Menu::opcaoListarMovimentacoes() {
+void MenuMovimentacao::opcaoListarMovimentacoes() {
 
-    if (!verificarCarteirasDisponiveis()) return;
+    if (!verificarCarteirasDisponiveis(carteiraController)) return;
 
     printInfo("\nListar Movimentacoes por ID");
     int idCarteira = lerIdCarteira();

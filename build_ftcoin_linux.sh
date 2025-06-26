@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo
 echo "========================================"
 echo "Compilando todos os arquivos do projeto..."
@@ -5,7 +7,7 @@ echo "========================================"
 
 g++ \
 Main.cpp \
-Menu/Menu.cpp Menu/MenuHelpers.cpp Menu/MenuCarteira.cpp Menu/MenuMovimentacao.cpp Menu/MenuRelatorios.cpp Menu/MenuAjuda.cpp Menu/MenuCores.cpp \
+Menu/MenuPrincipal.cpp Menu/MenuCarteira.cpp Menu/MenuMovimentacao.cpp Menu/MenuRelatorio.cpp Menu/MenuAjuda.cpp Menu/MenuUtil.cpp Menu/MenuCarteiraUtil.cpp \
 Model/Carteira.cpp Model/Movimentacao.cpp \
 Local/CarteiraController.cpp Local/MovimentacaoController.cpp Local/OraculoController.cpp Local/RelatorioController.cpp \
 -o ftcoin -std=c++11

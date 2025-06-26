@@ -1,6 +1,9 @@
-#include "Menu.hpp"
+#include "MenuCarteira.hpp"
 
-void Menu::exibirMenuCarteira() {
+MenuCarteira::MenuCarteira(CarteiraController* controller)
+    : carteiraController(controller) {}
+
+void MenuCarteira::exibir() {
     int opcao = -1;
 
     while (true) {
@@ -42,7 +45,7 @@ void Menu::exibirMenuCarteira() {
     }
 }
 
-void Menu::opcaoIncluirCarteira() {
+void MenuCarteira::opcaoIncluirCarteira() {
     std::string nome, corretora;
 
     printInfo("\nCriar Carteira");
@@ -57,9 +60,9 @@ void Menu::opcaoIncluirCarteira() {
     printSucess("Carteira criada com sucesso! ID gerado: " + std::to_string(id));
 }
 
-void Menu::opcaoRecuperarCarteira() {
+void MenuCarteira::opcaoRecuperarCarteira() {
 
-    if (!verificarCarteirasDisponiveis()) return;
+    if (!verificarCarteirasDisponiveis(carteiraController)) return;
 
     printInfo("\nRecuperar de Carteira");
     int idCarteira = lerIdCarteira();
@@ -75,9 +78,9 @@ void Menu::opcaoRecuperarCarteira() {
     }
 }
 
-void Menu::opcaoEditarCarteira() {
+void MenuCarteira::opcaoEditarCarteira() {
 
-    if (!verificarCarteirasDisponiveis()) return;
+    if (!verificarCarteirasDisponiveis(carteiraController)) return;
 
     printInfo("\nEditar Carteira");
     int idCarteira = lerIdCarteira();
@@ -113,9 +116,9 @@ void Menu::opcaoEditarCarteira() {
     }
 }
 
-void Menu::opcaoExcluirCarteira() {
+void MenuCarteira::opcaoExcluirCarteira() {
 
-    if (!verificarCarteirasDisponiveis()) return;
+    if (!verificarCarteirasDisponiveis(carteiraController)) return;
 
     printInfo("\nExcluir Carteira");
     int idCarteira = lerIdCarteira();

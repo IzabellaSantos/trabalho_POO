@@ -1,13 +1,15 @@
-#include "Menu.hpp"
+#include "MenuAjuda.hpp"
 
-void Menu::exibirMenuAjuda() {
+MenuAjuda::MenuAjuda() {}
+
+void MenuAjuda::exibir() {
     int opcao = -1;
 
     while (true) {
 
         system("cls");
 
-        printInfo("AJUDA AO USUARIO");
+        printInfo("\n=== AJUDA AO USUARIO ===");
         std::cout << "1 - Sobre o sistema\n"
                   << "2 - Creditos\n"
                   << "0 - Voltar\n"
@@ -25,8 +27,8 @@ void Menu::exibirMenuAjuda() {
                 break;
             case 2:
                 std::cout << "\nFT Coin - Sistema de Apuracao de Ganhos e Perdas\n"
-                          << "Autores: Izabella, Leticia e Vitor"
-                          << "Copyright: Catch2"
+                          << "Autores: Izabella, Leticia e Vitor\n"
+                          << "Copyright: Catch2\n"
                           << "Versao: 1.0\n"
                           << "Ano: 2025\n";
                 break;

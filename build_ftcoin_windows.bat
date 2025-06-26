@@ -8,7 +8,7 @@ echo ========================================
 
 g++ ^
 Main.cpp ^
-Menu\Menu.cpp Menu\MenuHelpers.cpp Menu\MenuCarteira.cpp Menu\MenuMovimentacao.cpp Menu\MenuRelatorios.cpp Menu\MenuAjuda.cpp Menu\MenuCores.cpp ^
+Menu\MenuPrincipal.cpp Menu\MenuCarteira.cpp Menu\MenuMovimentacao.cpp Menu\MenuRelatorio.cpp Menu\MenuAjuda.cpp Menu\MenuUtil.cpp Menu\MenuCarteiraUtil.cpp ^
 Model\Carteira.cpp Model\Movimentacao.cpp ^
 Local\CarteiraController.cpp Local\MovimentacaoController.cpp Local\OraculoController.cpp Local\RelatorioController.cpp ^
 -o ftcoin.exe -std=c++11 -static-libstdc++ -static-libgcc
@@ -26,7 +26,7 @@ echo Compilando os testes com Catch2...
 echo ========================================
 
 g++ -std=c++11 ^
--I"C:\Users\bella\Programming\C\trabalho_POO\Testes" ^
+-I"Testes" ^
 Testes\CatchMain.cpp ^
 Testes\LocalTestes\CarteiraControllerTeste.cpp Testes\LocalTestes\MovimentacaoControllerTeste.cpp Testes\LocalTestes\RelatorioControllerTeste.cpp ^
 Testes\Mocks\OraculoControllerMock.cpp ^
@@ -36,10 +36,8 @@ Local\CarteiraController.cpp Local\MovimentacaoController.cpp Local\OraculoContr
 
 if %errorlevel% neq 0 (
     echo Houve erros na compilacao dos testes!
-    echo.
 ) else (
     echo Testes compilados com sucesso! Executavel: testes.exe
-    echo.
 )
 
 :end

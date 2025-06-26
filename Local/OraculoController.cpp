@@ -2,17 +2,11 @@
 #include <ctime>
 #include <cstdlib>
 
-OraculoController::OraculoController()
-{
+OraculoController::OraculoController() {
   std::srand(static_cast<unsigned int>(std::time(nullptr)));
 }
 
-double OraculoController::obterCotacao(const std::string &data) const
-{
-  // Retorna uma cotação simulada entre 90 e 110
-  // Se data == "hoje", cotação é gerada com base no horário atual
-  // Caso contrário, pode ser gerado com base no hash da string da data
-
+double OraculoController::obterCotacao(const std::string &data) const {
   if (data == "hoje") {
     return 5.50; 
   } else {
@@ -20,7 +14,7 @@ double OraculoController::obterCotacao(const std::string &data) const
     for (char c : data) {
       seed += static_cast<unsigned int>(c);
     }
-    double cotacao = 90.0 + (seed % 21); // Simples hashing
+    double cotacao = 90.0 + (seed % 21);
 
     return cotacao;
   }

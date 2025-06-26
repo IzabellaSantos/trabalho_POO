@@ -1,6 +1,10 @@
-#include "Menu.hpp"
+#include "MenuRelatorio.hpp"
 
-void Menu::exibirMenuRelatorios() {
+MenuRelatorio::MenuRelatorio(CarteiraController* carteiraCtrl,
+                             RelatorioController* relatorioCtrl)
+    : carteiraController(carteiraCtrl), relatorioController(relatorioCtrl) {}
+    
+void MenuRelatorio::exibir() {
     int opcao = -1;
 
     while (true) {
@@ -30,10 +34,10 @@ void Menu::exibirMenuRelatorios() {
                 opcaoExibirGanhoPerda(); 
                 break;
             case 4:
-                listarCarteirasID();
+                opcaoListarCarteirasID();
                 break;
             case 5:
-                listarCarteirasPorNome();
+                opcaoListarCarteirasPorNome();
                 break;
             case 0: 
                 return;
@@ -46,9 +50,9 @@ void Menu::exibirMenuRelatorios() {
     }
 }
 
-void Menu::opcaoExibirSaldo() {
+void MenuRelatorio::opcaoExibirSaldo() {
 
-    if (!verificarCarteirasDisponiveis()) return;
+    if (!verificarCarteirasDisponiveis(carteiraController)) return;
 
     int idCarteira = lerIdCarteira();
 
@@ -63,9 +67,9 @@ void Menu::opcaoExibirSaldo() {
     std::cout << "Saldo atual: " << saldo << "\n";
 }
 
-void Menu::opcaoExibirHistorico() {
+void MenuRelatorio::opcaoExibirHistorico() {
 
-    if (!verificarCarteirasDisponiveis()) return;
+    if (!verificarCarteirasDisponiveis(carteiraController)) return;
 
     int idCarteira = lerIdCarteira();
 
@@ -89,9 +93,9 @@ void Menu::opcaoExibirHistorico() {
     }
 }
 
-void Menu::opcaoExibirGanhoPerda() {
+void MenuRelatorio::opcaoExibirGanhoPerda() {
 
-    if (!verificarCarteirasDisponiveis()) return;
+    if (!verificarCarteirasDisponiveis(carteiraController)) return;
     
     int idCarteira = lerIdCarteira();
 
@@ -107,7 +111,7 @@ void Menu::opcaoExibirGanhoPerda() {
     std::cout << resultado;
 }
 
-void Menu::listarCarteirasID() {
+void MenuRelatorio::opcaoListarCarteirasID() {
     std::vector<Carteira> carteiras = carteiraController->listarTodasCarteiras();
 
     if (carteiras.empty()) {
@@ -122,7 +126,7 @@ void Menu::listarCarteirasID() {
     }
 }
 
-void Menu::listarCarteirasPorNome() {
+void MenuRelatorio::opcaoListarCarteirasPorNome() {
     std::vector<Carteira> carteiras = carteiraController->listarCarteirasOrdenadasPorNome();
 
     if (carteiras.empty()) {
