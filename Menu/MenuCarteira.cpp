@@ -64,10 +64,7 @@ void Menu::opcaoRecuperarCarteira() {
     printInfo("\nRecuperar de Carteira");
     int idCarteira = lerIdCarteira();
 
-    if (idCarteira == -1) {
-        aguardarVoltar();
-        return;
-    }
+    if (idCarteira == -1) return;
     
     auto carteira = carteiraController->obterCarteira(idCarteira);
 

@@ -36,6 +36,8 @@ private:
 	void opcaoExibirSaldo();
 	void opcaoExibirHistorico();
 	void opcaoExibirGanhoPerda();
+	void listarCarteirasID();
+	void listarCarteirasPorNome();
 
 	void exibirMenuAjuda();
 

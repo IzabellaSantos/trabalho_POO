@@ -44,6 +44,7 @@ void Menu::opcaoRegistrarMovimentacao(char tipo) {
 
     if (!verificarCarteirasDisponiveis()) return;
 
+    printInfo("\nRegistrar Movimentacao");
     int idCarteira = lerIdCarteira();
 
     if (idCarteira == -1) return;
@@ -72,6 +73,7 @@ void Menu::opcaoListarMovimentacoes() {
 
     if (!verificarCarteirasDisponiveis()) return;
 
+    printInfo("\nListar Movimentacoes por ID");
     int idCarteira = lerIdCarteira();
 
     if (idCarteira == -1) return;
