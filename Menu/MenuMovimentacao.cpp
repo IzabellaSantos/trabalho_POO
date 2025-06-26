@@ -44,6 +44,7 @@ void Menu::opcaoRegistrarMovimentacao(char tipo) {
 
     if (!verificarCarteirasDisponiveis()) return;
 
+    printInfo("\nRegistrar Movimentacao");
     int idCarteira = lerIdCarteira();
 
     if (idCarteira == -1) return;
@@ -58,10 +59,21 @@ void Menu::opcaoRegistrarMovimentacao(char tipo) {
 
     std::cout << "Quantidade: ";
     std::cin >> quantidade;
+    std::cin.ignore();
+
+    if(quantidade < 0) {
+        printError("Quantidade nao pode ser negativa!");
+        return;
+    }
 
     std::cout << "Valor unitario: ";
     std::cin >> valorUnitario;
     std::cin.ignore();
+
+    if(valorUnitario < 0) {
+        printError("Valor Unitario nao pode ser negativo!");
+        return;
+    }
 
     movimentacaoController->adicionarMovimentacao(idCarteira, data, tipo, quantidade, valorUnitario);
 
@@ -72,6 +84,7 @@ void Menu::opcaoListarMovimentacoes() {
 
     if (!verificarCarteirasDisponiveis()) return;
 
+    printInfo("\nListar Movimentacoes por ID");
     int idCarteira = lerIdCarteira();
 
     if (idCarteira == -1) return;

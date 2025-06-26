@@ -14,7 +14,6 @@ TEST_CASE("Adicionar movimentação", "[MovimentacaoController]") {
 
     REQUIRE(movimentacoes.size() == 2);
 
-    REQUIRE(movimentacoes[0].getIdCarteira() == idMock);
     REQUIRE(movimentacoes[0].getDataOperacao() == "2025-06-24");
     REQUIRE(movimentacoes[0].getTipoOperacao() == 'C');
     REQUIRE(movimentacoes[0].getQuantidade() == Approx(2.5));

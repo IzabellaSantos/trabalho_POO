@@ -3,6 +3,7 @@
 #define CARTEIRA_CONTROLLER_HPP
 
 #include <vector>
+#include <algorithm>
 #include <memory>
 #include <map>
 #include "../Model/Carteira.hpp"
@@ -21,6 +22,7 @@ class CarteiraController {
       bool removerCarteira(int id);
       std::vector<Carteira> listarTodasCarteiras() const;
       bool verificarExistenciaCarteiras();
+      std::vector<Carteira> listarCarteirasOrdenadasPorNome() const;
 };
 
 #endif

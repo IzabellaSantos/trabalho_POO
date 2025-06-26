@@ -64,10 +64,7 @@ void Menu::opcaoRecuperarCarteira() {
     printInfo("\nRecuperar de Carteira");
     int idCarteira = lerIdCarteira();
 
-    if (idCarteira == -1) {
-        aguardarVoltar();
-        return;
-    }
+    if (idCarteira == -1) return;
     
     auto carteira = carteiraController->obterCarteira(idCarteira);
 
@@ -109,7 +106,7 @@ void Menu::opcaoEditarCarteira() {
         carteira->setCorretora(novaCorretora);
 
     if (carteiraController->atualizarCarteira(*carteira)) {
-        printSucess("Carteira atualizada com sucesso.");
+        printSucess("\nCarteira atualizada com sucesso.");
         exibirCarteira(*carteira);
     } else {
         printError("Falha ao atualizar carteira.");

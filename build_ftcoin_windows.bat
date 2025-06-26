@@ -9,10 +9,8 @@ echo ========================================
 g++ ^
 Main.cpp ^
 Menu\Menu.cpp Menu\MenuHelpers.cpp Menu\MenuCarteira.cpp Menu\MenuMovimentacao.cpp Menu\MenuRelatorios.cpp Menu\MenuAjuda.cpp Menu\MenuCores.cpp ^
-Model\Carteira.cpp Model\Movimentacao.cpp Model\Cotacao.cpp ^
+Model\Carteira.cpp Model\Movimentacao.cpp ^
 Local\CarteiraController.cpp Local\MovimentacaoController.cpp Local\OraculoController.cpp Local\RelatorioController.cpp ^
-DAO\CarteiraInMemoryDAO.cpp DAO\MovimentacaoInMemoryDAO.cpp DAO\OraculoInMemoryDAO.cpp ^
-Model\simular_cotacoes.cpp ^
 -o ftcoin.exe -std=c++11 -static-libstdc++ -static-libgcc
 
 if %errorlevel% neq 0 (
@@ -32,7 +30,7 @@ g++ -std=c++11 ^
 Testes\CatchMain.cpp ^
 Testes\LocalTestes\CarteiraControllerTeste.cpp Testes\LocalTestes\MovimentacaoControllerTeste.cpp Testes\LocalTestes\RelatorioControllerTeste.cpp ^
 Testes\Mocks\OraculoControllerMock.cpp ^
-Model\Carteira.cpp Model\Movimentacao.cpp Model\Cotacao.cpp ^
+Model\Carteira.cpp Model\Movimentacao.cpp ^
 Local\CarteiraController.cpp Local\MovimentacaoController.cpp Local\OraculoController.cpp Local\RelatorioController.cpp ^
 -o testes.exe -static-libstdc++ -static-libgcc
 

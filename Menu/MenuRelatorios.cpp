@@ -8,8 +8,10 @@ void Menu::exibirMenuRelatorios() {
 
         printInfo("\n=== RELATORIOS ===");
         std::cout << "1 - Exibir saldo atual da carteira\n"
-                  << "2 - Exibir historico de movimentacoes\n"
-                  << "3 - Exibir ganho ou perda atual\n"
+                  << "2 - Exibir historico de movimentacao por ID\n"
+                  << "3 - Exibir ganho ou perda atual das carteiras\n"
+                  << "4 - Listar carteiras ordenadas por ID\n"
+                  << "5 - Listar carteiras ordenadas por nome do titular\n"
                   << "0 - Voltar\n";
         
         if (!lerOpcao(opcao)) {
@@ -27,10 +29,16 @@ void Menu::exibirMenuRelatorios() {
             case 3: 
                 opcaoExibirGanhoPerda(); 
                 break;
+            case 4:
+                listarCarteirasID();
+                break;
+            case 5:
+                listarCarteirasPorNome();
+                break;
             case 0: 
                 return;
             default: 
-                printError("Opcao invalida, por favor escolha entre 0 e 3."); 
+                printError("Opcao invalida, por favor escolha entre 0 e 5."); 
                 break;
         }
 
@@ -95,5 +103,37 @@ void Menu::opcaoExibirGanhoPerda() {
     }
 
     double resultado = relatorioController->calcularGanhoPerda(idCarteira);
-    std::cout << "Ganho/Perda total: " << resultado << "\n";
+    printInfo("\nGanho/Perda total");
+    std::cout << resultado;
 }
+
+void Menu::listarCarteirasID() {
+    std::vector<Carteira> carteiras = carteiraController->listarTodasCarteiras();
+
+    if (carteiras.empty()) {
+        printError("Nenhuma carteira encontrada.");
+        return;
+    }
+
+    printInfo("\nCarteiras cadastradas (ordenadas por ID)");
+    for (const Carteira& carteira : carteiras) {
+        exibirCarteira(carteira);
+        std::cout << "\n";
+    }
+}
+
+void Menu::listarCarteirasPorNome() {
+    std::vector<Carteira> carteiras = carteiraController->listarCarteirasOrdenadasPorNome();
+
+    if (carteiras.empty()) {
+        printError("Nenhuma carteira encontrada.");
+        return;
+    }
+
+    printInfo("\nCarteiras cadastradas (ordenadas por nome do titular)");
+    for (const Carteira& carteira : carteiras) {
+        exibirCarteira(carteira);
+        std::cout << "\n";
+    }
+}
+
