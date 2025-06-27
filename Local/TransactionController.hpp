@@ -11,7 +11,7 @@ class TransactionController {
   private:
     // Map walletId → list of Transaction
     std::unordered_map<int, std::vector<Transaction>> transactionsByWallet;
-    int nextTransactionId = 0; // Next transaction ID to assign
+    int nextTransactionId = 1; // Next transaction ID to assign
 
   public:
     // Adds a transaction (purchase or sale) to a wallet
