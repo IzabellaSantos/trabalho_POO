@@ -1,27 +1,25 @@
-// Carteira.hpp
-#ifndef CARTEIRA_HPP
-#define CARTEIRA_HPP
+#ifndef WALLET_HPP
+#define WALLET_HPP
 
 #include <string>
 
-class Carteira {
+// Class representing an investment wallet
+class Wallet {
   private:
-    int carteiraId;
-    std::string nomeTitular;
-    std::string corretora;
+      int walletId;
+      std::string ownerName;
+      std::string broker;
 
   public:
-    Carteira() = default;  // construtor padrão
-    Carteira(int carteiraId, 
-             const std::string &nomeTitular, 
-             const std::string &corretora);
+      Wallet();
+      Wallet(int id, const std::string &owner, const std::string &brokerName);
 
-    int getCarteiraId() const;
-    std::string getNomeTitular() const;
-    std::string getCorretora() const;
+      int getWalletId() const;
+      std::string getOwnerName() const;
+      std::string getBroker() const;
 
-    void setNomeTitular(const std::string &nome);
-    void setCorretora(const std::string &corretora);
+      void setOwnerName(const std::string &owner);
+      void setBroker(const std::string &brokerName);
 };
 
 #endif

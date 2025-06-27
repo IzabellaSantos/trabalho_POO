@@ -15,7 +15,7 @@ private:
 public:
     MenuTransaction(WalletController* walletCtrl,
                     TransactionController* transactionCtrl);
-    void display() override;
+    void display() override ;
 
     void optionRegisterTransaction(char type);
     void optionListTransactions();

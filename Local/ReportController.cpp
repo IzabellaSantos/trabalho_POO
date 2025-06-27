@@ -1,54 +1,54 @@
-#include "RelatorioController.hpp"
-#include <iostream>
+#include "ReportController.hpp"
 
-RelatorioController::RelatorioController(CarteiraController* cCtrl,
-                                         MovimentacaoController* mCtrl,
-                                         OraculoController* oCtrl)
-    : carteiraController(cCtrl), movimentacaoController(mCtrl), oraculoController(oCtrl) {}
+// Constructor initializes the controllers used for data retrieval and price querying
+ReportController::ReportController(WalletController* wCtrl,
+                                   TransactionController* tCtrl,
+                                   OracleController* oCtrl)
+    : walletController(wCtrl), transactionController(tCtrl), oracleController(oCtrl) {}
 
-// Retorna o saldo em reais da carteira (vendas - compras)
-double RelatorioController::calcularSaldo(int idCarteira) const {
-    double saldo = 0.0;
-    auto movimentacoes = movimentacaoController->obterMovimentacoes(idCarteira);
+// Calculates the net balance in currency for the wallet (sells - buys)
+double ReportController::calculateBalance(int walletId) const {
+    double balance = 0.0;
+    auto transactions = transactionController->getTransactions(walletId);
 
-    for (const auto& mov : movimentacoes) {
-        double valor = mov.getQuantidade() * mov.getValorUnitario();
-        if (mov.getTipoOperacao() == 'C') {
-            saldo -= valor; // Compra → dinheiro sai
-        } else if (mov.getTipoOperacao() == 'V') {
-            saldo += valor; // Venda → dinheiro entra
+    for (const auto& transaction : transactions) {
+        double value = transaction.getQuantity() * transaction.getUnitPrice();
+        if (transaction.getOperationType() == 'B') { // Buy
+            balance -= value; // Money spent
+        } else if (transaction.getOperationType() == 'S') { // Sell
+            balance += value; // Money received
         }
     }
 
-    return saldo;
+    return balance;
 }
 
-// Retorna o histórico de movimentações da carteira
-std::vector<Movimentacao> RelatorioController::obterHistoricoMovimentacao(int idCarteira) const {
-    return movimentacaoController->obterMovimentacoes(idCarteira);
+// Returns all transactions of a wallet
+std::vector<Transaction> ReportController::getTransactionHistory(int walletId) const {
+    return transactionController->getTransactions(walletId);
 }
 
-// Calcula ganho ou perda com base no valor de mercado atual dos ativos restantes
-double RelatorioController::calcularGanhoPerda(int idCarteira) const {
-    double totalInvestido = 0.0;
-    double quantidadeEmCarteira = 0.0;
+// Calculates gain or loss based on the current market value of remaining assets
+double ReportController::calculateGainLoss(int walletId) const {
+    double totalInvested = 0.0;
+    double quantityInWallet = 0.0;
 
-    auto movimentacoes = movimentacaoController->obterMovimentacoes(idCarteira);
-    double cotacaoAtual = oraculoController->obterCotacao("hoje");
+    auto transactions = transactionController->getTransactions(walletId);
+    double currentPrice = oracleController->getPrice("today");
 
-    for (const auto& mov : movimentacoes) {
-        double qtd = mov.getQuantidade();
-        double preco = mov.getValorUnitario();
+    for (const auto& transaction : transactions) {
+        double qty = transaction.getQuantity();
+        double price = transaction.getUnitPrice();
 
-        if (mov.getTipoOperacao() == 'C') {
-            totalInvestido += qtd * preco;     // Dinheiro gasto
-            quantidadeEmCarteira += qtd;       // Ativo entra
-        } else if (mov.getTipoOperacao() == 'V') {
-            totalInvestido -= qtd * preco;     // Dinheiro recuperado
-            quantidadeEmCarteira -= qtd;       // Ativo sai
+        if (transaction.getOperationType() == 'B') { // Buy
+            totalInvested += qty * price;
+            quantityInWallet += qty;
+        } else if (transaction.getOperationType() == 'S') { // Sell
+            totalInvested -= qty * price;
+            quantityInWallet -= qty;
         }
     }
 
-    double valorAtual = quantidadeEmCarteira * cotacaoAtual;
-    return valorAtual - totalInvestido;
+    double currentValue = quantityInWallet * currentPrice;
+    return currentValue - totalInvested;
 }

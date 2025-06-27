@@ -1,15 +1,17 @@
-#include "MovimentacaoController.hpp"
-#include <vector>
+// === File: TransactionController.cpp ===
+#include "TransactionController.hpp"
 
-void MovimentacaoController::adicionarMovimentacao(int idCarteira, const std::string& data, char tipo, double quantidade, double valorUnitario) {
-  Movimentacao mov(proximoIdMovimentacao++, data, tipo, quantidade, valorUnitario);
-  movimentacoesPorCarteira[idCarteira].push_back(mov);
+// Adds a new transaction to the specified wallet
+void TransactionController::addTransaction(int walletId, const std::string &date, char operationType, double quantity, double unitPrice) {
+    Transaction tx(nextTransactionId++, date, operationType, quantity, unitPrice);
+    transactionsByWallet[walletId].push_back(tx);
 }
 
-std::vector<Movimentacao> MovimentacaoController::obterMovimentacoes(int idCarteira) const {
-  auto it = movimentacoesPorCarteira.find(idCarteira);
-  if (it != movimentacoesPorCarteira.end()) {
-    return it->second;
-  }
-  return std::vector<Movimentacao>(); // ou return {}; se estiver usando C++11 ou superior
+// Returns the list of transactions for a given wallet, or an empty list if not found
+std::vector<Transaction> TransactionController::getTransactions(int walletId) const {
+    auto it = transactionsByWallet.find(walletId);
+    if (it != transactionsByWallet.end()) {
+        return it->second;
+    }
+    return {};
 }

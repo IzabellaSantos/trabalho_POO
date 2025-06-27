@@ -1,52 +1,51 @@
-#include "MenuPrincipal.hpp"
+#include "MainMenu.hpp"
+#include <iostream>
 
-MenuPrincipal::MenuPrincipal(CarteiraController* carteiraCtrl,
-                             MovimentacaoController* movCtrl,
-                             RelatorioController* relatorioCtrl)
-    : menuCarteira(carteiraCtrl),
-      menuMovimentacao(carteiraCtrl, movCtrl),
-      menuRelatorio(carteiraCtrl, relatorioCtrl),
-      menuAjuda() {}
+// Constructor initializes controllers used by the menu
+MainMenu::MainMenu(WalletController *wCtrl, TransactionController *tCtrl, ReportController *rCtrl)
+    : walletController(wCtrl), transactionController(tCtrl), reportController(rCtrl) {}
 
+void MainMenu::showWalletMenu() {
+  std::cout << "Wallet Menu\n";
+  // TODO: implement wallet management menu options here
+}
 
-void MenuPrincipal::exibir() {
-    int opcao = -1;
+void MainMenu::showTransactionMenu() {
+  std::cout << "Transaction Menu\n";
+  // TODO: implement transaction management menu options here
+}
 
-    while (true) {
-        system("cls");
-        
-        printInfo("\n=== MENU PRINCIPAL ===");
-        std::cout << "1 - Carteira\n"
-                  << "2 - Movimentacao\n"
-                  << "3 - Relatorios\n"
-                  << "4 - Ajuda\n"
-                  << "0 - Sair\n";
+void MainMenu::showReportMenu() {
+  std::cout << "Report Menu\n";
+  // TODO: implement report display menu options here
+}
 
-        if (!lerOpcao(opcao)) {
-            aguardarVoltar();
-            continue;
-        }
+void MainMenu::display() {
+  int option = 0;
+  do {
+    std::cout << "\nMain Menu:\n";
+    std::cout << "1 - Wallet Management\n";
+    std::cout << "2 - Transaction Management\n";
+    std::cout << "3 - Report\n";
+    std::cout << "0 - Exit\n";
+    std::cout << "Select option: ";
+    std::cin >> option;
 
-        switch (opcao) {
-            case 1: 
-                menuCarteira.exibir(); 
-                break;
-            case 2: 
-                menuMovimentacao.exibir(); 
-                break;
-            case 3: 
-                menuRelatorio.exibir(); 
-                break;
-            case 4: 
-                menuAjuda.exibir(); 
-                break;
-            case 0: 
-                std::cout << "Saindo do Programa...\n"; 
-                return;
-            default: 
-                printError("Opcao invalida, por favor escolha entre 0 e 4."); 
-                aguardarVoltar();
-                break;
-        }
+    switch (option) {
+      case 1:
+        showWalletMenu();
+        break;
+      case 2:
+        showTransactionMenu();
+        break;
+      case 3:
+        showReportMenu();
+        break;
+      case 0:
+        std::cout << "Exiting...\n";
+        break;
+      default:
+        std::cout << "Invalid option.\n";
     }
+  } while (option != 0);
 }

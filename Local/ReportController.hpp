@@ -1,30 +1,30 @@
-#ifndef RELATORIO_CONTROLLER_HPP
-#define RELATORIO_CONTROLLER_HPP
+#ifndef REPORT_CONTROLLER_HPP
+#define REPORT_CONTROLLER_HPP
 
 #include <vector>
-#include "../Model/Carteira.hpp"
-#include "../Model/Movimentacao.hpp"
-#include "CarteiraController.hpp"
-#include "MovimentacaoController.hpp"
-#include "OraculoController.hpp"
+#include "../Model/Wallet.hpp"
+#include "../Model/Transaction.hpp"
+#include "WalletController.hpp"
+#include "TransactionController.hpp"
+#include "OracleController.hpp"
 
-class RelatorioController {
-  private:
-      CarteiraController *carteiraController;
-      MovimentacaoController *movimentacaoController;
-      OraculoController *oraculoController;
+class ReportController {
+private:
+    WalletController *walletController;
+    TransactionController *transactionController;
+    OracleController *oracleController;
 
-  public:
-      RelatorioController(CarteiraController *cCtrl, MovimentacaoController *mCtrl, OraculoController *oCtrl);
+public:
+    ReportController(WalletController *wCtrl, TransactionController *tCtrl, OracleController *oCtrl);
 
-      // Retorna o saldo líquido da carteira (R$), considerando compras e vendas
-      double calcularSaldo(int idCarteira) const;
+    // Returns the net balance of the wallet (in currency), considering buys and sells
+    double calculateBalance(int walletId) const;
 
-      // Retorna todas as movimentações associadas a uma carteira
-      std::vector<Movimentacao> obterHistoricoMovimentacao(int idCarteira) const;
+    // Returns all transactions associated with a wallet
+    std::vector<Transaction> getTransactionHistory(int walletId) const;
 
-      // Calcula o ganho ou perda total da carteira com base na cotação atual
-      double calcularGanhoPerda(int idCarteira) const;
+    // Calculates total gain or loss of the wallet based on current price
+    double calculateGainLoss(int walletId) const;
 };
 
 #endif

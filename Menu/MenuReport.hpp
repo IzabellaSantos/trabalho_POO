@@ -16,7 +16,7 @@ private:
 public:
     MenuReport(WalletController* walletCtrl,
                ReportController* reportCtrl);
-    void display() override;
+    void display() override ;
 
     void optionShowBalance();
     void optionShowHistory();

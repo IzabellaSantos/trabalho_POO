@@ -3,21 +3,21 @@
 #define WALLET_MENU_HPP
 
 #include "MenuBase.hpp"
-#include "WalletMenuUtil.hpp"
+#include "MenuWalletUtil.hpp"
 #include "../Local/WalletController.hpp"
 
-class WalletMenu: public MenuBase, public WalletMenuUtil {
-    private:
-        WalletController* walletController;
+class WalletMenu : public MenuBase, public MenuWalletUtil {
+private:
+    WalletController* walletController;
 
-    public:
-        WalletMenu(WalletController* controller);
-        void show() override;
+public:
+    WalletMenu(WalletController* controller);
+    void display() override;
 
-        void optionAddWallet();
-        void optionRetrieveWallet();
-        void optionEditWallet();
-        void optionDeleteWallet();
+    void optionAddWallet();
+    void optionRetrieveWallet();
+    void optionEditWallet();
+    void optionDeleteWallet();
 };
 
 #endif
