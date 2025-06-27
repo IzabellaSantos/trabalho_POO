@@ -13,7 +13,7 @@ TEST_CASE("Add transaction", "[TransactionController]") {
 
     REQUIRE(transactions.size() == 2);
 
-    REQUIRE(transactions[0].getDate() == "2025-06-24");
+    REQUIRE(transactions[0].getTransactionDate() == "2025-06-24");
     REQUIRE(transactions[0].getTransactionType() == 'B');
     REQUIRE(transactions[0].getQuantity() == Approx(2.5));
     REQUIRE(transactions[0].getUnitPrice() == Approx(100.0));

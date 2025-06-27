@@ -36,7 +36,7 @@ TEST_CASE("Remove wallet", "[WalletController]") {
 
     int id = controller.createWallet("Carlos", "Binance");
 
-    bool removed = controller.removeWallet(id);
+    bool removed = controller.deleteWallet(id);
     REQUIRE(removed == true);
 
     auto wallet = controller.getWallet(id);

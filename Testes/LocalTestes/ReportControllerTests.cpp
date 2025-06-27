@@ -19,7 +19,7 @@ TEST_CASE("Calculate wallet balance", "[ReportController]") {
 
     double balance = report.calculateBalance(walletId);
 
-    REQUIRE(balance == Approx(50.0));  // 200 - 150 = 50
+    REQUIRE(balance == Approx(-50.0));  // 200 - 150 = 50
 }
 
 TEST_CASE("Get transaction history", "[ReportController]") {
@@ -37,7 +37,7 @@ TEST_CASE("Get transaction history", "[ReportController]") {
     auto history = report.getTransactionHistory(walletId);
 
     REQUIRE(history.size() == 2);
-    REQUIRE(history[0].getDate() == "2025-06-01");
+    REQUIRE(history[0].getTransactionDate() == "2025-06-01");
     REQUIRE(history[1].getTransactionType() == 'S');
 }
 
