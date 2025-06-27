@@ -1,5 +1,5 @@
 #include "Transaction.hpp"
-
+#include <stdexcept>
 // Default constructor
 Transaction::Transaction() 
     : transactionId(0), transactionDate(""), transactionType('C'), quantity(0.0), unitPrice(0.0) {}

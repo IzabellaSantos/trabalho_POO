@@ -1,23 +1,20 @@
-#ifndef MAIN_MENU_HPP
-#define MAIN_MENU_HPP
+#include "MenuUtil.hpp"
+#include "WalletMenu.hpp"
+#include "MenuTransaction.hpp"
+#include "MenuReport.hpp"
+#include "MenuHelp.hpp"
 
-#include "../Local/WalletController.hpp"
-#include "../Local/TransactionController.hpp"
-#include "../Local/ReportController.hpp"
+class MainMenu : public MenuUtil {
+private:
+    WalletMenu walletMenu;
+    TransactionMenu transactionMenu;
+    ReportMenu reportMenu;
+    HelpMenu helpMenu;
 
-class MainMenu {
-  private:
-      WalletController *walletController;
-      TransactionController *transactionController;
-      ReportController *reportController;
+public:
+    MainMenu(WalletController* walletCtrl,
+             TransactionController* transCtrl,
+             ReportController* reportCtrl);
 
-      void showWalletMenu();
-      void showTransactionMenu();
-      void showReportMenu();
-
-  public:
-      MainMenu(WalletController *wCtrl, TransactionController *tCtrl, ReportController *rCtrl);
-      void display();
+    void display();
 };
-
-#endif

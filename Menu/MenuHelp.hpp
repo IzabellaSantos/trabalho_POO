@@ -1,14 +1,15 @@
 #pragma once
-#ifndef MENU_HELP_HPP
-#define MENU_HELP_HPP
+
+#ifndef HELP_MENU_HPP
+#define HELP_MENU_HPP
 
 #include "MenuBase.hpp"
 #include "MenuUtil.hpp"
 
-class MenuHelp : public MenuBase, public MenuUtil {
-public:
-    MenuHelp();
-    void display() override;
+class HelpMenu : public MenuBase, public MenuUtil {
+    public:
+        HelpMenu();
+        void display() override;
 };
 
 #endif
