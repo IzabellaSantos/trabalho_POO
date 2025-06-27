@@ -6,7 +6,7 @@ MainMenu::MainMenu(WalletController* walletCtrl,
     : walletMenu(walletCtrl),
       transactionMenu(walletCtrl, transCtrl),
       reportMenu(walletCtrl, reportCtrl),
-      helpMenu() {}
+      menuHelp() {}
 
 
 void MainMenu::display() {
@@ -38,7 +38,7 @@ void MainMenu::display() {
                 reportMenu.display(); 
                 break;
             case 4: 
-                helpMenu.display(); 
+                menuHelp.display(); 
                 break;
             case 0: 
                 std::cout << "Exiting Program...\n"; 

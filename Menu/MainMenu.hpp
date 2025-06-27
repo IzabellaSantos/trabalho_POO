@@ -7,9 +7,9 @@
 class MainMenu : public MenuUtil {
 private:
     WalletMenu walletMenu;
-    TransactionMenu transactionMenu;
-    ReportMenu reportMenu;
-    HelpMenu helpMenu;
+    MenuTransaction transactionMenu;
+    MenuReport reportMenu;
+    MenuHelp menuHelp;
 
 public:
     MainMenu(WalletController* walletCtrl,

@@ -6,9 +6,9 @@
 #include "MenuBase.hpp"
 #include "MenuUtil.hpp"
 
-class HelpMenu : public MenuBase, public MenuUtil {
+class MenuHelp : public MenuBase, public MenuUtil {
     public:
-        HelpMenu();
+        MenuHelp();
         void display() override;
 };
 

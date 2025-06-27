@@ -38,7 +38,7 @@ TEST_CASE("Get transaction history", "[ReportController]") {
 
     REQUIRE(history.size() == 2);
     REQUIRE(history[0].getDate() == "2025-06-01");
-    REQUIRE(history[1].getOperationType() == 'S');
+    REQUIRE(history[1].getTransactionType() == 'S');
 }
 
 TEST_CASE("Calculate gain or loss", "[ReportController]") {

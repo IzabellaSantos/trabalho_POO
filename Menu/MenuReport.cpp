@@ -124,7 +124,7 @@ void MenuReport::optionListWalletsByID() {
 }
 
 void MenuReport::optionListWalletsByName() {
-    std::vector<Wallet> wallets = WalletController->listWalletsSortedByName();
+    std::vector<Wallet> wallets = walletController->listWalletsSortedByName();
 
     if (wallets.empty()) {
         printError("No wallets found.");

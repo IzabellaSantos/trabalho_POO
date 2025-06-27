@@ -7,9 +7,11 @@ echo "========================================"
 
 g++ \
 Main.cpp \
-Menu/MenuPrincipal.cpp Menu/MenuCarteira.cpp Menu/MenuMovimentacao.cpp Menu/MenuRelatorio.cpp Menu/MenuAjuda.cpp Menu/MenuUtil.cpp Menu/MenuCarteiraUtil.cpp \
-Model/Carteira.cpp Model/Movimentacao.cpp \
-Local/CarteiraController.cpp Local/MovimentacaoController.cpp Local/OraculoController.cpp Local/RelatorioController.cpp \
+Menu/MainMenu.cpp Menu/WalletMenu.cpp Menu/MenuWalletUtil.cpp \
+Menu/MenuTransaction.cpp Menu/MenuReport.cpp Menu/MenuHelp.cpp \
+Menu/MenuUtil.cpp \
+Model/Wallet.cpp Model/Transaction.cpp \
+Local/WalletController.cpp Local/TransactionController.cpp Local/oracleController.cpp Local/reportController.cpp \
 -o ftcoin -std=c++11
 
 if [ $? -ne 0 ]; then
@@ -25,11 +27,13 @@ echo "========================================"
 
 g++ -std=c++11 \
 -I./Testes \
-Testes/CatchMain.cpp \
-Testes/LocalTestes/CarteiraControllerTeste.cpp Testes/LocalTestes/MovimentacaoControllerTeste.cpp Testes/LocalTestes/RelatorioControllerTeste.cpp \
-Testes/Mocks/OraculoControllerMock.cpp \
-Model/Carteira.cpp Model/Movimentacao.cpp \
-Local/CarteiraController.cpp Local/MovimentacaoController.cpp Local/OraculoController.cpp Local/RelatorioController.cpp \
+Testes/catchMain.cpp \
+Testes/LocalTestes/WalletControllerTests.cpp \
+Testes/LocalTestes/TransactionControllerTests.cpp \
+Testes/LocalTestes/reportControllerTests.cpp \
+Testes/Mocks/OracleControllerMock.cpp \
+Model/Wallet.cpp Model/Transaction.cpp \
+Local/WalletController.cpp Local/TransactionController.cpp Local/oracleController.cpp Local/reportController.cpp \
 -o testes2
 
 if [ $? -ne 0 ]; then
@@ -39,4 +43,3 @@ else
 fi
 
 echo
-

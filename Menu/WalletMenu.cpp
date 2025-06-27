@@ -143,7 +143,7 @@ void WalletMenu::optionDeleteWallet()
     if (walletId == -1)
         return;
 
-    if (walletController->removeWallet(walletId))
+    if (walletController->deleteWallet(walletId))
     {
         printSuccess("Wallet deleted successfully.");
     }

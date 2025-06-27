@@ -14,11 +14,11 @@ TEST_CASE("Add transaction", "[TransactionController]") {
     REQUIRE(transactions.size() == 2);
 
     REQUIRE(transactions[0].getDate() == "2025-06-24");
-    REQUIRE(transactions[0].getOperationType() == 'B');
+    REQUIRE(transactions[0].getTransactionType() == 'B');
     REQUIRE(transactions[0].getQuantity() == Approx(2.5));
     REQUIRE(transactions[0].getUnitPrice() == Approx(100.0));
 
-    REQUIRE(transactions[1].getOperationType() == 'S');
+    REQUIRE(transactions[1].getTransactionType() == 'S');
     REQUIRE(transactions[1].getQuantity() == Approx(1.0));
     REQUIRE(transactions[1].getUnitPrice() == Approx(110.0));
 }

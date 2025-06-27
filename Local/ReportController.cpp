@@ -13,9 +13,9 @@ double ReportController::calculateBalance(int walletId) const {
 
     for (const auto& transaction : transactions) {
         double value = transaction.getQuantity() * transaction.getUnitPrice();
-        if (transaction.getOperationType() == 'B') { // Buy
+        if (transaction.getTransactionType() == 'B') { // Buy
             balance -= value; // Money spent
-        } else if (transaction.getOperationType() == 'S') { // Sell
+        } else if (transaction.getTransactionType() == 'S') { // Sell
             balance += value; // Money received
         }
     }
@@ -40,10 +40,10 @@ double ReportController::calculateGainLoss(int walletId) const {
         double qty = transaction.getQuantity();
         double price = transaction.getUnitPrice();
 
-        if (transaction.getOperationType() == 'B') { // Buy
+        if (transaction.getTransactionType() == 'B') { // Buy
             totalInvested += qty * price;
             quantityInWallet += qty;
-        } else if (transaction.getOperationType() == 'S') { // Sell
+        } else if (transaction.getTransactionType() == 'S') { // Sell
             totalInvested -= qty * price;
             quantityInWallet -= qty;
         }
