@@ -1,61 +1,70 @@
 # FTCoin
 
-FTCoin é um sistema de gerenciamento de carteiras e movimentações financeiras desenvolvido em C++ como parte de um projeto acadêmico de Programação Orientada a Objetos. Ele permite criar carteiras, registrar movimentações, gerar relatórios e visualizar cotações.
+FTCoin is a wallet and financial transaction management system developed in C++ as part of an academic Object-Oriented Programming project. It allows users to create wallets, register transactions, generate reports, and view currency quotes.
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
+```text
 ├── Main.cpp
 ├── Menu/
-│ ├── Menu.cpp
-│ ├── MenuHelpers.cpp
-│ ├── MenuCarteira.cpp
-│ ├── MenuMovimentacao.cpp
-│ ├── MenuRelatorios.cpp
-│ ├── MenuAjuda.cpp
-│ └── MenuCores.cpp
+│   ├── Menu.cpp
+│   ├── MenuHelpers.cpp
+│   ├── MenuWallet.cpp
+│   ├── MenuTransaction.cpp
+│   ├── MenuReports.cpp
+│   ├── MenuHelp.cpp
+│   └── MenuColors.cpp
 ├── Model/
-│ ├── Carteira.cpp
-│ ├── Movimentacao.cpp
-├── Local/
-│ ├── CarteiraController.cpp
-│ ├── MovimentacaoController.cpp
-│ ├── OraculoController.cpp
-│ └── RelatorioController.cpp
-├── Testes/
-│ ├── CatchMain.cpp
-│ ├── LocalTestes/
-│ │ ├── CarteiraControllerTeste.cpp
-│ │ ├── MovimentacaoControllerTeste.cpp
-│ │ └── RelatorioControllerTeste.cpp
-│ └── Mocks/
-│ └── OraculoControllerMock.cpp
-├── build.sh
+│   ├── Wallet.cpp
+│   └── Transaction.cpp
+├── Controllers/
+│   ├── WalletController.cpp
+│   ├── TransactionController.cpp
+│   ├── OracleController.cpp
+│   └── ReportController.cpp
+├── Tests/
+│   ├── CatchMain.cpp
+│   ├── UnitTests/
+│   │   ├── WalletControllerTest.cpp
+│   │   ├── TransactionControllerTest.cpp
+│   │   └── ReportControllerTest.cpp
+│   └── Mocks/
+│       └── OracleControllerMock.cpp
+├── build_ftcoin_linux.sh
+├── build_ftcoin_windows.bat
 └── README.md
+```
 
-## ⚙️ Como Compilar
-
+## ⚙️ How to Compile
 ### 📦 Requisitos
 
-- `g++` (versão 5.0 ou superior)
-- Terminal Linux/Windows/MacOS
-- [Catch2](https://github.com/catchorg/Catch2) já incluído no projeto para testes
+- `g++` (version 5.0 or higher)
+- Terminal (Linux/Windows/macOS)
+- [Catch2](https://github.com/catchorg/Catch2) is already included in the project for unit testing
 
-### 🔧 Compilação
+### 🔧 Compilation
 
-No terminal, execute:
-chmod +x build.sh
-./build.sh
+In the terminal, run for linux:
+chmod +x build_ftcoin_linux.sh
 
-Isso irá compilar:
-./ftcoin → executável principal do projeto
-./testes → executável dos testes unitários
+for windows:
+build_ftcoin_windows.bat
 
-## 🧪 Executando os Testes
-Após compilar, execute:
-./testes
+This will compile:
+./ftcoin → main executable of the project
+./tests → unit test executable
 
-## 🚀 Como Usar
-Após a compilação, rode o sistema com:
+## 🧪 Running the Tests
+After compiling, run for linux:
+./tests
+
+for windows:
+tests
+
+## 🚀 How to Use
+After compilation, run for linux:
 ./ftcoin
 
+for windows:
+ftcoin
 

@@ -1,36 +1,36 @@
 #include "MenuUtil.hpp"
 
-// Códigos ANSI para cores
+// ANSI escape codes for colors
 const std::string RESET  = "\033[0m";
 const std::string RED    = "\033[31m";
 const std::string GREEN  = "\033[32m";
 const std::string YELLOW = "\033[33m";
 const std::string CYAN   = "\033[36m";
 
-void MenuUtil::printInfo(const std::string& texto) const {
-    std::cout << CYAN << texto << RESET << std::endl;
+void MenuUtil::printInfo(const std::string& text) const {
+    std::cout << CYAN << '\n' << text << RESET << std::endl;
 }
 
-void MenuUtil::printSucess(const std::string& texto) const {
-    std::cout << GREEN << texto << RESET << std::endl;
+void MenuUtil::printSuccess(const std::string& text) const {
+    std::cout << GREEN << '\n' << text << RESET << std::endl;
 }
 
-void MenuUtil::printError(const std::string& texto) const {
-    std::cout << RED << texto << RESET << std::endl;
+void MenuUtil::printError(const std::string& text) const {
+    std::cout << RED << '\n' << text << RESET << std::endl;
 }
 
-void MenuUtil::aguardarVoltar() const {
-    std::cout << "\nPressione Enter para voltar ao menu...";
+void MenuUtil::waitForReturn() const {
+    std::cout << "\nPress Enter to return to the menu...";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-bool MenuUtil::lerOpcao(int& opcao) const {
-    std::cout << "Escolha uma opcao: ";
-    if (std::cin >> opcao) {
+bool MenuUtil::readOption(int& option) const {
+    std::cout << "Choose an option: ";
+    if (std::cin >> option) {
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return true;
     } else {
-        printError("Entrada invalida, por favor digite apenas numeros.");
+        printError("Invalid input, please enter numbers only.");
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return false;
