@@ -27,7 +27,7 @@ int main() {
             mainMenu.display();
             break;
         default:
-            std::cout << "Invalid option.\n";
+            std::cout << "Exiting Program...\n";
             break;
     }
 

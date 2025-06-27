@@ -27,9 +27,9 @@ void MenuHelp::display() {
         case 2:
             std::cout << "\nFT Coin - Capital Gains and Losses Reporting System\n"
                       << "Authors:\n"
-                      << "  - Izabella Julia dos Santos – RA 169048\n"
-                      << "  - Leticia Lauriano de Oliveira – RA 173008\n"
-                      << "  - Vitor C. Borela – RA 260934\n"
+                      << "  - Izabella Julia dos Santos RA 169048\n"
+                      << "  - Leticia Lauriano de Oliveira RA 173008\n"
+                      << "  - Vitor C. Borela RA 260934\n"
                       << "Copyright: Catch2\n"
                       << "Version: 1.0\n"
                       << "Year: 2025\n";

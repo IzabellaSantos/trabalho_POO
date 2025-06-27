@@ -2,7 +2,7 @@
 
 echo
 echo "========================================"
-echo "Compilando todos os arquivos do projeto..."
+echo "Compiling all project files..."
 echo "========================================"
 
 g++ \
@@ -15,31 +15,31 @@ Local/WalletController.cpp Local/TransactionController.cpp Local/oracleControlle
 -o ftcoin -std=c++11
 
 if [ $? -ne 0 ]; then
-    echo "Houve erros na compilação do projeto!"
+    echo "There were errors during project compilation!"
 else
-    echo "Projeto compilado com sucesso! Executável: ./ftcoin"
+    echo "Project compiled successfully! Executable: ./ftcoin"
 fi
 
 echo
 echo "========================================"
-echo "Compilando os testes com Catch2..."
+echo "Compiling tests with Catch2..."
 echo "========================================"
 
 g++ -std=c++11 \
 -I./Testes \
 Testes/catchMain.cpp \
-Testes/LocalTestes/WalletControllerTests.cpp \
-Testes/LocalTestes/TransactionControllerTests.cpp \
-Testes/LocalTestes/reportControllerTests.cpp \
+Testes/LocalTests/WalletControllerTests.cpp \
+Testes/LocalTests/TransactionControllerTests.cpp \
+Testes/LocalTests/reportControllerTests.cpp \
 Testes/Mocks/OracleControllerMock.cpp \
 Model/Wallet.cpp Model/Transaction.cpp \
 Local/WalletController.cpp Local/TransactionController.cpp Local/oracleController.cpp Local/reportController.cpp \
--o testes2
+-o tests
 
 if [ $? -ne 0 ]; then
-    echo "Houve erros na compilação dos testes!"
+    echo "There were errors during test compilation!"
 else
-    echo "Testes compilados com sucesso! Executável: ./testes"
+    echo "Tests compiled successfully! Executable: ./tests"
 fi
 
 echo

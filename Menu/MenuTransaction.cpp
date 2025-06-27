@@ -23,10 +23,10 @@ void MenuTransaction::display() {
 
         switch (option) {
             case 1:
-                optionRegisterTransaction('C');
+                optionRegisterTransaction('B');
                 break;
             case 2:
-                optionRegisterTransaction('V');
+                optionRegisterTransaction('S');
                 break;
             case 3:
                 optionListTransactions();

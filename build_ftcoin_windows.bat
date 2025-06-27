@@ -3,7 +3,7 @@ cd /d %~dp0
 
 echo.
 echo ========================================
-echo Compilando todos os arquivos do projeto...
+echo Compiling all project files...
 echo ========================================
 
 g++ ^
@@ -16,32 +16,32 @@ Local/WalletController.cpp Local/TransactionController.cpp Local/oracleControlle
 -o ftcoin.exe -std=c++11 -static-libstdc++ -static-libgcc
 
 if %errorlevel% neq 0 (
-    echo Houve erros na compilacao do projeto!
+    echo There were errors during project compilation!
     goto end
 ) else (
-    echo Projeto compilado com sucesso! Executavel: ftcoin.exe
+    echo Project compiled successfully! Executable: ftcoin.exe
 )
 
 echo.
 echo ========================================
-echo Compilando os testes com Catch2...
+echo Compiling tests with Catch2...
 echo ========================================
 
 g++ -std=c++11 ^
 -I./Testes ^
 Testes/catchMain.cpp ^
-Testes/LocalTestes/WalletControllerTests.cpp ^
-Testes/LocalTestes/TransactionControllerTests.cpp ^
-Testes/LocalTestes/reportControllerTests.cpp ^
+Testes/LocalTests/WalletControllerTests.cpp ^
+Testes/LocalTests/TransactionControllerTests.cpp ^
+Testes/LocalTests/reportControllerTests.cpp ^
 Testes/Mocks/OracleControllerMock.cpp ^
 Model/Wallet.cpp Model/Transaction.cpp ^
 Local/WalletController.cpp Local/TransactionController.cpp Local/oracleController.cpp Local/reportController.cpp ^
--o testes.exe -static-libstdc++ -static-libgcc
+-o tests.exe -static-libstdc++ -static-libgcc
 
 if %errorlevel% neq 0 (
-    echo Houve erros na compilacao dos testes!
+    echo There were errors during test compilation!
 ) else (
-    echo Testes compilados com sucesso! Executavel: testes.exe
+    echo Tests compiled successfully! Executable: tests.exe
 )
 
 :end
