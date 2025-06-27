@@ -39,7 +39,7 @@ std::vector<Wallet> WalletController::listAllWallets() const {
     return list;
 }
 
-bool WalletController::hasWallets() {
+bool WalletController::hasNoWallets() {
     return wallets.empty();
 }
 

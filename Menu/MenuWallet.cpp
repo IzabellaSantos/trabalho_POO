@@ -1,9 +1,9 @@
-#include "WalletMenu.hpp"
+#include "MenuWallet.hpp"
 
-WalletMenu::WalletMenu(WalletController *controller)
+MenuWallet::MenuWallet(WalletController *controller)
     : walletController(controller) {}
 
-void WalletMenu::display()
+void MenuWallet::display()
 {
     int option = -1;
 
@@ -49,7 +49,7 @@ void WalletMenu::display()
     }
 }
 
-void WalletMenu::optionAddWallet()
+void MenuWallet::optionAddWallet()
 {
     std::string name, broker;
 
@@ -65,7 +65,7 @@ void WalletMenu::optionAddWallet()
     printSuccess("Wallet created successfully! Generated ID: " + std::to_string(id));
 }
 
-void WalletMenu::optionRetrieveWallet()
+void MenuWallet::optionRetrieveWallet()
 {
     if (!checkWalletsAvailable(walletController))
         return;
@@ -78,17 +78,14 @@ void WalletMenu::optionRetrieveWallet()
 
     auto wallet = walletController->getWallet(walletId);
 
-    if (wallet)
-    {
+    if (wallet) {
         displayWallet(*wallet);
-    }
-    else
-    {
+    } else {
         printError("Wallet not found.");
     }
 }
 
-void WalletMenu::optionEditWallet()
+void MenuWallet::optionEditWallet()
 {
     if (!checkWalletsAvailable(walletController))
         return;
@@ -101,15 +98,14 @@ void WalletMenu::optionEditWallet()
 
     auto wallet = walletController->getWallet(walletId);
 
-    if (!wallet)
-    {
+    if (!wallet) {
         printError("Wallet not found.");
         return;
     }
 
     std::string newName, newBroker;
 
-    std::cout << "Current name: " << wallet->getOwnerName() << "\n";
+    std::cout << "\nCurrent name: " << wallet->getOwnerName() << "\n";
     std::cout << "Enter new owner name (or leave blank to keep unchanged): ";
     std::getline(std::cin, newName);
     if (!newName.empty())
@@ -121,18 +117,16 @@ void WalletMenu::optionEditWallet()
     if (!newBroker.empty())
         wallet->setBroker(newBroker);
 
-    if (walletController->updateWallet(*wallet))
-    {
-        printSuccess("\nWallet updated successfully.");
+    if (walletController->updateWallet(*wallet)) {
+        printSuccess("Wallet updated successfully.");
+        printInfo("New information for wallet:");
         displayWallet(*wallet);
-    }
-    else
-    {
+    } else {
         printError("Failed to update wallet.");
     }
 }
 
-void WalletMenu::optionDeleteWallet()
+void MenuWallet::optionDeleteWallet()
 {
     if (!checkWalletsAvailable(walletController))
         return;
@@ -143,12 +137,9 @@ void WalletMenu::optionDeleteWallet()
     if (walletId == -1)
         return;
 
-    if (walletController->deleteWallet(walletId))
-    {
+    if (walletController->deleteWallet(walletId)) {
         printSuccess("Wallet deleted successfully.");
-    }
-    else
-    {
+    } else {
         printError("Wallet not found.");
     }
 }

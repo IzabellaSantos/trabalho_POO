@@ -1,12 +1,12 @@
 #include "MenuUtil.hpp"
-#include "WalletMenu.hpp"
+#include "MenuWallet.hpp"
 #include "MenuTransaction.hpp"
 #include "MenuReport.hpp"
 #include "MenuHelp.hpp"
 
 class MainMenu : public MenuUtil {
 private:
-    WalletMenu walletMenu;
+    MenuWallet MenuWallet;
     MenuTransaction transactionMenu;
     MenuReport reportMenu;
     MenuHelp menuHelp;

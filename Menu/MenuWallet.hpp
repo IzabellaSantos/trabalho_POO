@@ -6,12 +6,12 @@
 #include "MenuWalletUtil.hpp"
 #include "../Local/WalletController.hpp"
 
-class WalletMenu : public MenuBase, public MenuWalletUtil {
+class MenuWallet : public MenuBase, public MenuWalletUtil {
 private:
     WalletController* walletController;
 
 public:
-    WalletMenu(WalletController* controller);
+    MenuWallet(WalletController* controller);
     void display() override;
 
     void optionAddWallet();

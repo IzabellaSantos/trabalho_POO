@@ -3,7 +3,7 @@
 MainMenu::MainMenu(WalletController* walletCtrl,
                    TransactionController* transCtrl,
                    ReportController* reportCtrl)
-    : walletMenu(walletCtrl),
+    : MenuWallet(walletCtrl),
       transactionMenu(walletCtrl, transCtrl),
       reportMenu(walletCtrl, reportCtrl),
       menuHelp() {}
@@ -29,7 +29,7 @@ void MainMenu::display() {
 
         switch (option) {
             case 1: 
-                walletMenu.display(); 
+                MenuWallet.display(); 
                 break;
             case 2: 
                 transactionMenu.display(); 

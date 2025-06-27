@@ -8,8 +8,8 @@
 int main() {
     int option;
     std::cout << "Choose mode:\n";
-    std::cout << "1 - local memory (display main menu)\n";
-    std::cout << "2 - database mode (not implemented yet)\n";
+    std::cout << "1 - local memory \n";
+    std::cout << "2 - database mode \n";
     std::cout << "Option: ";
     std::cin >> option;
 
@@ -21,11 +21,9 @@ int main() {
 
     switch (option) {
         case 1:
-            std::cout << "Running in local memory mode...\n";
             mainMenu.display();
             break;
         case 2:
-            std::cout << "Database mode (not implemented yet).\n";
             mainMenu.display();
             break;
         default:

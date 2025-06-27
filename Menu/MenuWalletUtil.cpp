@@ -1,7 +1,7 @@
 #include "MenuWalletUtil.hpp"
 
 bool MenuWalletUtil::checkWalletsAvailable(WalletController* controller) {
-    if (!controller->hasWallets()) {
+    if (controller->hasNoWallets()) {
         printError("No wallets found to perform the action.");
         return false;
     }
@@ -24,7 +24,7 @@ int MenuWalletUtil::readWalletId() {
 }
 
 void MenuWalletUtil::displayWallet(const Wallet& wallet) {
-    std::cout << "ID: " << wallet.getWalletId() << "\n";
+    std::cout << "\nID: " << wallet.getWalletId() << "\n";
     std::cout << "Holder Name: " << wallet.getOwnerName() << "\n";
     std::cout << "Broker: " << wallet.getBroker() << "\n";
 }

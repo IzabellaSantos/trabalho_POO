@@ -7,7 +7,7 @@ echo "========================================"
 
 g++ \
 Main.cpp \
-Menu/MainMenu.cpp Menu/WalletMenu.cpp Menu/MenuWalletUtil.cpp \
+Menu/MainMenu.cpp Menu/MenuWallet.cpp Menu/MenuWalletUtil.cpp \
 Menu/MenuTransaction.cpp Menu/MenuReport.cpp Menu/MenuHelp.cpp \
 Menu/MenuUtil.cpp \
 Model/Wallet.cpp Model/Transaction.cpp \

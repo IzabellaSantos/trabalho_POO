@@ -33,7 +33,7 @@ class WalletController {
       std::vector<Wallet> listAllWallets() const;
 
       // Returns true if there are any wallets
-      bool hasWallets();
+      bool hasNoWallets();
 
       // Lists all wallets ordered by owner's name
       std::vector<Wallet> listWalletsSortedByName() const;

@@ -8,15 +8,15 @@ const std::string YELLOW = "\033[33m";
 const std::string CYAN   = "\033[36m";
 
 void MenuUtil::printInfo(const std::string& text) const {
-    std::cout << CYAN << text << RESET << std::endl;
+    std::cout << CYAN << '\n' << text << RESET << std::endl;
 }
 
 void MenuUtil::printSuccess(const std::string& text) const {
-    std::cout << GREEN << text << RESET << std::endl;
+    std::cout << GREEN << '\n' << text << RESET << std::endl;
 }
 
 void MenuUtil::printError(const std::string& text) const {
-    std::cout << RED << text << RESET << std::endl;
+    std::cout << RED << '\n' << text << RESET << std::endl;
 }
 
 void MenuUtil::waitForReturn() const {
