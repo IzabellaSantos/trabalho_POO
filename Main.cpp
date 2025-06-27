@@ -1,19 +1,37 @@
 #include <iostream>
-#include "Local/CarteiraController.hpp"
-#include "Local/MovimentacaoController.hpp"
-#include "Local/RelatorioController.hpp"
-#include "Local/OraculoController.hpp"
-#include "Menu/MenuPrincipal.hpp"
+#include "Local/WalletController.hpp"
+#include "Local/TransactionController.hpp"
+#include "Local/ReportController.hpp"
+#include "Local/OracleController.hpp"
+#include "Menu/MainMenu.hpp"
 
 int main() {
-  CarteiraController carteiraController;
-  MovimentacaoController movimentacaoController;
-  OraculoController oraculoController;
+    int option;
+    std::cout << "Choose mode:\n";
+    std::cout << "1 - local memory (display main menu)\n";
+    std::cout << "2 - database mode (not implemented yet)\n";
+    std::cout << "Option: ";
+    std::cin >> option;
 
-  RelatorioController relatorioController(&carteiraController, &movimentacaoController, &oraculoController);
+    WalletController walletController;
+    TransactionController transactionController;
+    OracleController oracleController;
+    ReportController reportController(&walletController, &transactionController, &oracleController);
+    MainMenu mainMenu(&walletController, &transactionController, &reportController);
 
-  MenuPrincipal menuPrincipal(&carteiraController, &movimentacaoController, &relatorioController);
-  menuPrincipal.exibir();
+    switch (option) {
+        case 1:
+            std::cout << "Running in local memory mode...\n";
+            mainMenu.display();
+            break;
+        case 2:
+            std::cout << "Database mode (not implemented yet).\n";
+            mainMenu.display();
+            break;
+        default:
+            std::cout << "Invalid option.\n";
+            break;
+    }
 
-  return 0;
+    return 0;
 }

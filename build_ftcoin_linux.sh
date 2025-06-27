@@ -30,7 +30,7 @@ Testes/LocalTestes/CarteiraControllerTeste.cpp Testes/LocalTestes/MovimentacaoCo
 Testes/Mocks/OraculoControllerMock.cpp \
 Model/Carteira.cpp Model/Movimentacao.cpp \
 Local/CarteiraController.cpp Local/MovimentacaoController.cpp Local/OraculoController.cpp Local/RelatorioController.cpp \
--o testes
+-o testes2
 
 if [ $? -ne 0 ]; then
     echo "Houve erros na compilação dos testes!"

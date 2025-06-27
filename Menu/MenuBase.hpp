@@ -1,5 +1,7 @@
+#pragma once
 #ifndef MENUBASE_HPP
 #define MENUBASE_HPP
+
 #include <iostream>
 #include <limits>
 
@@ -11,7 +13,7 @@
 
 class MenuBase {
 public:
-    virtual void exibir() = 0; // método puro, obriga herdeiros a implementar
+    virtual void display() = 0; // pure virtual method, must be implemented
     virtual ~MenuBase() = default;
 };
 
